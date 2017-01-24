@@ -1,7 +1,7 @@
 $(document).ready(arranque);
 function arranque()
 {
-	if(localStorage.reg_agromil)
+	if(localStorage.wsp_aquiles)
 	{window.location.replace("home.html");}
 
 	$("#Login").submit(Login_Submit);
@@ -24,7 +24,7 @@ function Login_Submit(evento)
 	      {
 	      	if (typeof(data) == "object")
 	      	{
-	        	localStorage.setItem("reg_agromil", JSON.stringify(data));  
+	        	localStorage.setItem("wsp_aquiles", JSON.stringify(data));  
 	        	window.location.replace("home.html");
 	      	}
 	      } else

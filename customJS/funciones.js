@@ -2,7 +2,7 @@ var Usuario = null;
 
 $(document).on("ready", function()
     {
-        Usuario = JSON.parse(localStorage.getItem('reg_agromil'));
+        Usuario = JSON.parse(localStorage.getItem('wsp_aquiles'));
 
         if (Usuario == null || Usuario == undefined)
         {
@@ -38,7 +38,7 @@ var aplicacion = function()
 
     this.cerrarSesion = function()
     {
-        delete localStorage.reg_agromil;
+        delete localStorage.wsp_aquiles;
         window.location.replace("index.html");
     }
 };
