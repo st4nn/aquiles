@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ingresar Nro Evento | Aquiles</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+        <link rel='stylesheet' href='vendors/datatables-bootstrap/dataTables.bootstrap.css'>
+        <link rel='stylesheet' href='vendors/datatables-fixedheader/dataTables.fixedHeader.css'>
+        <link rel='stylesheet' href='vendors/datatables-responsive/dataTables.responsive.css'>
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        
+    </head>
+    <body data-ma-header="teal">
+        <header id="header" class="media">
+            
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <ul class="main-menu">
+                	<br>
+                    <li><a href="maniobras.html"><i class="zmdi zmdi-arrow-left"></i> Volver a Maniobras</a></li>
+                </ul>
+            </aside>
+
+            <input id="txtProductos_id" type="hidden">
+
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <form id="frmNroEvento_Busqueda">
+                                        <div class="form-group">
+                                            <label for="txtNroEvento_Parametro" class="col-sm-3 control-label">Filtrar Por</label>
+                                            <div class="col-sm-9">
+                                                <div class="fg-line">
+                                                    <div class="select">
+                                                        <select class="form-control guardar" id="txtNroEvento_Parametro" placeholder="Parametro" required>
+                                                            <option value="circuito">Circuito</option>
+                                                            <option value="trafo">Trafo</option>
+                                                            <option value="nodo">Nodo</option>
+                                                            <option value="fases">Fases</option>
+                                                            <option value="kva">KVA</option>
+                                                            <option value="bla">BLA</option>
+                                                            <option value="programacion">Programación</option>
+                                                            <option value="apertura">Apertura</option>
+                                                            <option value="cierre">Cierre</option>
+                                                            <option value="direccion">Dirección</option>
+                                                            <option value="barrio">Barrio</option>
+                                                            <option value="encargado">Encargado</option>
+                                                            <option value="telefono">Teléfono</option>
+                                                            <option value="observaciones">Observaciones</option>
+                                                            <option value="cuadrilla">Cuadrilla</option>
+                                                            <option value="municipio">Municipio</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                        <div class="form-group">
+                                            <label for="txtNroEvento_Filtro" class="col-sm-3 control-label">Filtro</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control guardar" id="txtNroEvento_Filtro" placeholder="Filtro" required>
+                                            </div>
+                                        </div> 
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-success btn-lg"> Buscar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <form id="frmNroEvento_Asignar">
+                                        <div class="form-group">
+                                            <label for="txtNroEvento_Numero" class="col-sm-3 control-label">Número de Evento</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control guardar" id="txtNroEvento_Numero" placeholder="Número de Evento" required>
+                                            </div>
+                                            <div class="col-sm-4 text-right">
+                                                <button class="btn btn-warning btn-lg"> Asignar</button>
+                                            </div>
+                                        </div> 
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Programación<small></small></h2>
+                        </div>
+                        <div class="card-body card-padding form-horizontal">
+                            <div class="table-responsive">
+                                <table id="tblNroEvento_Resultado" class="table table-condensed table-hover table-striped">
+                                    <thead>                                    
+                                        <tr>
+                                            <th></th>
+                                            <th>Circuito</th>
+                                            <th>Número de Evento</th>
+                                            <th>Trafo</th>
+                                            <th>Nodo</th>
+                                            <th>Fases</th>
+                                            <th>KVA</th>
+                                            <th>BLA</th>
+                                            <th>Programación</th>
+                                            <th>Apertura</th>
+                                            <th>Cierre</th>
+                                            <th>Dirección</th>
+                                            <th>Barrio</th>
+                                            <th>Encargado</th>
+                                            <th>Teléfono</th>
+                                            <th>Observaciones</th>
+                                            <th>Cuadrilla</th>
+                                            <th>Municipio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/logo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+        <script src="vendors/datatables/jquery.dataTables.js"></script>
+        <script src="vendors/datatables-bootstrap/dataTables.bootstrap.js"></script>
+        <script src="vendors/datatables-tabletools/dataTables.tableTools.js"></script>
+        <script src="vendors/datatables/dataTables.js"></script>
+
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/aquiles.js"></script>
+        <script src="customJS/nroEvento.js"></script>
+    </body>
+  </html>

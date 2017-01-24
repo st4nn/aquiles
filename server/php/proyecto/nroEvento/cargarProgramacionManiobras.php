@@ -4,14 +4,16 @@
 
    $link = Conectar();
 
-   $Usuario = $_POST['Usuario'];
+   $Usuario = addslashes($_POST['Usuario']);
+   $Filtro = addslashes($_POST['Filtro']);
+   $Parametro = addslashes($_POST['Parametro']);
 
    $sql = "SELECT 
-            Proveedores.*
+            *
          FROM 
-            Proveedores
+            programacionManiobras
          WHERE
-            Proveedores.Borrado = 0;";
+            programacionManiobras.$Parametro = '$Filtro';";
 
    $result = $link->query($sql);
 
@@ -30,6 +32,9 @@
          $idx++;
       }
       mysqli_free_result($result);  
+   } else
+   {
+      echo 0;
    }
 
    echo json_encode($Usuarios);

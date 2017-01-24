@@ -101,7 +101,7 @@ $campos = substr($campos, 0, -2);
 $Respuesta = array('Detectados' => $Detectados, 'Ingresados' => 0);
 if ($campos <> "")
 {
-    $sql = "INSERT INTO programacionManiobras( Usuario, idArchivo, trafo, nodo, fases, kva, bla, circuito, programacion, apertura, cierre, direccion, barrio, encarrgado, telefono, observaciones, cuadrilla, municipio) VALUES " . 
+    $sql = "INSERT INTO programacionManiobras( Usuario, idArchivo, trafo, nodo, fases, kva, bla, circuito, programacion, apertura, cierre, direccion, barrio, encargado, telefono, observaciones, cuadrilla, municipio) VALUES " . 
             $campos . " 
         ON DUPLICATE KEY UPDATE 
             Usuario = VALUES(Usuario),
@@ -117,7 +117,7 @@ if ($campos <> "")
             cierre = VALUES(cierre),
             direccion = VALUES(direccion),
             barrio = VALUES(barrio),
-            encarrgado = VALUES(encarrgado),
+            encargado = VALUES(encargado),
             telefono = VALUES(telefono),
             observaciones = VALUES(observaciones),
             cuadrilla = VALUES(cuadrilla),

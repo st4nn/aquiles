@@ -5,6 +5,5 @@ function iniciarModulo()
     $("#txtImportar_Prefijo").val(obtenerPrefijo());
 
     $("#cntImportar_Archivos").iniciarObjImportarArchivos({Prefijo : $("#txtImportar_Prefijo"), Proceso: $("#txtImportar_Proceso"), Usuario: Usuario.id});
-
 }
 
