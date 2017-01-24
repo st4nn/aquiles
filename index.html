@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Aquiles</title>
+        
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+            
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <img src="img/fondo-internas.png" alt="Logo Agromil" style="height:100%;position:fixed;width:100%; z-index-1;">
+        <img src="img/logo.png" alt="Logo Agromil" style="position: fixed; top:10px; left:10px;">
+        <div class="login" data-lbg="teal">
+            <!-- Login -->
+            <div class="l-block toggled" id="l-login">
+                <div class="lb-header palette-Teal bg">
+                    <i class="zmdi zmdi-account-circle"></i>
+                    Hola! Por favor ingresa tus datos
+                </div>
+
+                <div class="lb-body">
+                    <form id="Login">
+                        <div class="form-group fg-float">
+                            <div class="fg-line">
+                                <input id="txtLogin_Usuario" type="text" class="input-sm form-control fg-input" required>
+                                <label class="fg-label">Usuario</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float">
+                            <div class="fg-line">
+                                <input id="txtLogin_Clave" type="password" class="input-sm form-control fg-input" required>
+                                <label class="fg-label">Clave</label>
+                            </div>
+                        </div>
+
+                        <button class="btn palette-Teal bg">Ingresar</button>
+
+                        <div class="m-t-20">
+                            <a data-block="#l-forget-password" data-bg="blue" href="" class="palette-Teal text">Olvidaste la clave?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Forgot Password -->
+            <div class="l-block" id="l-forget-password">
+                <div class="lb-header palette-Blue bg">
+                    <i class="zmdi zmdi-account-circle"></i>
+                    Olvidaste la clave?
+                </div>
+
+                <div class="lb-body">
+                    <p class="m-b-30">Ingresa tu dirección de correo para enviarte las instrucciones.</p>
+
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            <input type="email" class="input-sm form-control fg-input" required>
+                            <label class="fg-label">Dirección de Correo</label>
+                        </div>
+                    </div>
+
+                    <button class="btn palette-Blue bg">Enviar</button>
+
+                    <div class="m-t-30">
+                        <a data-block="#l-login" data-bg="teal" class="palette-Blue text d-block m-b-5" href="">Ingresar Datos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="img/wsplogo_logo_footer.png" alt="" style="position: fixed; bottom: 1px; left:1px;">
+
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <script src="js/functions.js"></script>
+
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script type="text/javascript" src="customJS/index.js"></script>
+        
+    </body>
+</html>

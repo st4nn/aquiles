@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Aquiles</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <!--<link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">-->
+        
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet"> 
+        
+    </head>
+    <body data-ma-header="teal">
+        <header id="header" class="media">
+
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <div class="main-menu">
+                	
+                    <div class="card popular-post">
+                        <div class="card-header ch-img" style="background-image: url(img/headers/sm/4.png); height: 150px;">
+                            <h2>Notificaciones <small>Notificaciones recientes</small></h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group lg-alt">
+                                <a href="" class="list-group-item media">
+                                    <div class="pull-left">
+                                        <img class="avatar-img" src="img/profile-pics/1.jpg" alt="">
+                                    </div>
+
+                                    <div class="media-body">
+                                        <div class="lgi-heading"><strong>Sistema</strong></div>
+                                        <small class="">Esta es una notificación de prueba</small>
+                                        <small class="lgi-text">2016-12-22</small>
+                                    </div>
+                                </a>
+
+                                <a href="" class="list-group-item media">
+                                    <div class="pull-left">
+                                        <img class="avatar-img" src="img/profile-pics/1.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading"><strong>Sistema</strong></div>
+                                        <small class="">Bienvenido al Sistema Agromil.</small>
+                                        <small class="lgi-text">2016-12-21</small>
+                                    </div>
+                                </a>
+
+                                <a href="" class="list-group-item view-more">
+                                    <i class="zmdi zmdi-long-arrow-right"></i> Ver todas
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section id="content">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header">
+                                <h2 id="lblHome_Periodo"></h2>
+                            </div>
+                        </div>
+                        <div class="card-body card-padding">
+                            <div id="cntHome_BotonesPeriodo" class="row">
+                                <div class="btn-group col-sm-12 p-5">
+                                    <button type="button" id="btnHome_Periodo_Hoy" class="btn btn-primary waves-effect col-xs-3">Hoy</button>
+                                    <button type="button" id="btnHome_Periodo_Ayer" class="btn btn-default waves-effect col-xs-3">Ayer</button>
+                                    <button type="button" id="btnHome_Periodo_Mes" class="btn btn-default waves-effect col-xs-3">Éste Mes</button>
+                                    <div class="btn-group col-xs-3">
+                                        <button type="button" class="btn btn-default dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="true">
+                                            Personalizada
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                                    <div class="dtp-container fg-line">
+                                                        <input id="txtHome_Desde" type="text" class="form-control datepicker" placeholder="Desde...">                                   
+                                                    </div>
+                                                </div>
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                                    <div class="dtp-container fg-line">
+                                                        <input id="txtHome_Hasta" type="text" class="form-control datepicker" placeholder="Hasta...">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div id="cntHome_Produccion" class="clearfix">
+                            <div class="preloader pls-red">
+                                <svg class="pl-circular" viewBox="25 25 50 50">
+                                    <circle class="plc-path" cx="50" cy="50" r="20"></circle>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                            <div class="card rating-list">
+                                <div class="card-header palette-Teal-400 bg">
+                                    <h2 class="palette-White text">Stock en Bodega</h2>
+                                    <small class="palette-White text">Cantidades de Sacos</small>
+                                </div>
+
+                                <div class="card-body">
+                                    <div id="cntHome_StockBodega" class="list-group lg-alt">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card rating-list">
+                                <div class="card-header palette-Teal-400 bg">
+                                    <h2 class="palette-White text">Pago de Servicios Públicos</h2>
+                                </div>
+
+                                <div class="card-body card-padding-sm ">
+                                    <div class="row text-center palette-Teal-200 bg">
+                                        <div class="col-xs-6">
+                                            <h5 class="palette-White text">Unidades</h5>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h5 class="palette-White text">Valor</h5>
+                                        </div>
+                                    </div>
+                                    <div id="cntHome_ServiciosPublicos" class="list-group lg-alt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="card rating-list">
+                                <div class="card-header palette-Teal-400 bg">
+                                    <h2 class="palette-White text">Despachos</h2>
+                                </div>
+
+                                <div class="card-body">
+                                    <div id="cntHome_Despachos" class="list-group lg-alt">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card m-t-10">
+                                <div class="card-header palette-Teal-400 bg">
+                                    <div class="cwh-day">Materia Prima</div>
+                                </div>
+                                <div class="card-body card-padding-sm ">
+                                    <div class="row text-center palette-Teal-200 bg">
+                                        <div class="col-xs-6">
+                                            <h5 class="palette-White text">Salidas</h5>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h5 class="palette-White text">Ingresos</h5>
+                                        </div>
+                                    </div>
+                                    <div id="cntHome_MateriaPrima" class="list-group lg-alt">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card m-t-10">
+                                <div class="card-header palette-Teal-400 bg">
+                                    <div class="cwh-day">Sacos Devueltos</div>
+                                </div>
+                                <div class="card-body card-padding-sm ">
+                                    <div class="row text-center palette-Teal-200 bg">
+                                        <div class="col-xs-6">
+                                            <h5 class="palette-White text">En Kg</h5>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h5 class="palette-White text">Saco</h5>
+                                        </div>
+                                    </div>
+                                    <div id="cntHome_SacosDevueltos" class="list-group lg-alt">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <div class="card rating-list">
+                                <div class="card-header palette-Teal-400 bg">
+                                    <h2 class="palette-White text">Despachos por Cliente</h2>
+                                </div>
+
+                                <div class="card-body">
+                                    <div id="cntHome_DespachosPorCliente" class="list-group lg-alt">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="card palette-Blue-400 bg">
+                                <div class="card-header palette-Blue-600 bg">
+                                    <div class="cwh-day">Stock de Materia Prima</div>
+                                </div>
+                                <div id="cntStockMateriaPrima" class="pie-grid clearfix text-center">
+
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/logo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/salvattore/dist/salvattore.min.js"></script>	
+
+        <script src="vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
+        <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="js/flot-charts/curved-line-chart.js"></script>
+        <script src="js/flot-charts/line-chart.js"></script>
+
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/moment/min/local.es.js"></script>
+        <!--<script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>-->
+        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <script src="js/charts.js"></script>
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/agromil.js"></script>
+        <script src="customJS/home.js"></script>
+        
+
+
+    </body>
+  </html>
