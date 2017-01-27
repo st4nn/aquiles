@@ -243,7 +243,7 @@ $.fn.iniciarObjImportarArchivos = function(parametros)
 		    {
 		        nombre = value.name.split(".");
 		        nombre = nombre[nombre.length-1];
-		        if (nombre == "xls")
+		        if (nombre.toLowerCase() == "xls" || nombre.toLowerCase() == "xlsx")
 		        {
 		        	data.append(key, value);		        	
 		        } else
@@ -259,7 +259,7 @@ $.fn.iniciarObjImportarArchivos = function(parametros)
 		    } else
 		    {
 			    parametros.Prefijo = obtenerPrefijo();
-			    parametros.Proceso = $(parametros.Proceso).val();
+			    parametros.Proceso = $(parametros.objProceso).val();
 
 			    if (parametros != undefined && parametros != null)
 			    {
@@ -286,8 +286,8 @@ $.fn.iniciarObjImportarArchivos = function(parametros)
 
 				            if( parseInt(data) > 1)
 				            {
-
-		                        $.post('server/php/manejoArchivos/' + $("#txtImportar_Proceso").val() + '.php', {Usuario : Usuario.id, idArchivo : data, Archivo : nomArchivo}, function(data2, textStatus, xhr) 
+				            	console.log(parametros);
+		                        $.post('server/php/manejoArchivos/' + parametros.Proceso + '.php', {Usuario : Usuario.id, idArchivo : data, Archivo : parametros.Prefijo + '/' + nomArchivo}, function(data2, textStatus, xhr) 
 		                        {
 		                        	if (typeof(data2) != "object")
 		                        	{

@@ -5,15 +5,26 @@ function iniciarModulo()
     $("#frmNroEvento_Busqueda").on("submit", function(evento)
     {
         evento.preventDefault();
+        $("#cntNroEvento_BotonesCircuito button").remove();
         $.post('server/php/proyecto/nroEvento/cargarProgramacionManiobras.php', {Usuario: Usuario.id, Parametro : $("#txtNroEvento_Parametro").val(), Filtro : $("#txtNroEvento_Filtro").val()}, function(data, textStatus, xhr) 
         {
             var tds = "";
+            var tdsBotonesCircuito = "";
+            var idxCircuito = 0;
             if (data != 0)
             {
+                var tmpCircuito = "";
                 $.each(data, function(index, val) 
                 {
+                    if (tmpCircuito != val.circuito)
+                    {
+                        tdsBotonesCircuito += '<button class="btn btn-default waves-effect m-5 btnNroEvento_BotonCircuito">' + val.circuito + '</button>';
+                        tmpCircuito = val.circuito;
+                        idxCircuito++;
+                    }
+
                      tds += "<tr>";
-                        tds += '<td></td>';
+                        tds += '<td class="c-white">' + val.id + '</td>';
                         tds += '<td>' + val.circuito + '</td>';
                         tds += '<td>' + val.nroEvento + '</td>';
                         tds += '<td>' + val.trafo + '</td>';
@@ -35,6 +46,13 @@ function iniciarModulo()
                      tds += "</tr>";
                 });
                 $("#tblNroEvento_Resultado").crearDataTable(tds);
+                $("#cntNroEvento_BotonesCircuito").append(tdsBotonesCircuito);
+                $("#lblNroEvento_CircuitosIdentificados").text(idxCircuito);
+            } else
+            {
+                $("#tblNroEvento_Resultado").crearDataTable();
+                $("#lblNroEvento_CircuitosIdentificados").text(0);
+                Mensaje("Hey", "No hay datos que coincidan con esa búsqueda", "danger");
             }
         }, "json");
     });
@@ -51,8 +69,25 @@ function iniciarModulo()
             } else
             {
                 Mensaje("Hey", "El numero ha sido asignado", "success");
+                $("#txtNroEvento_Numero").val("");
             }
         });
+    });
+
+    $(document).delegate('.btnNroEvento_BotonCircuito', 'click', function(event) 
+    {
+        $('.btnNroEvento_BotonCircuito').removeClass("btn-warning");
+        
+        var objFiltro = $("#tblNroEvento_Resultado_filter input[type=search]");
+        $(objFiltro).val($(this).text());
+        $(this).addClass('btn-warning');
+        $(objFiltro).trigger('keyup');
+    });
+
+    $(document).delegate("#tblNroEvento_Resultado_filter input[type=search]", 'change', function(event) 
+    {
+        console.log(obtenerFecha());
+        $('.btnNroEvento_BotonCircuito').removeClass("btn-warning");
     });
 
 }

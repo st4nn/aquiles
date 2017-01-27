@@ -1,5 +1,7 @@
 function iniciarModulo()
 {
+    $("#lblHeader_NomModulo").text("Trabajo en Campo");
+
 	$("#frmCrearUsuario").on("submit", function(evento)
     {
         evento.preventDefault();
@@ -70,5 +72,6 @@ function iniciarModulo()
 
     });
 
+    //$("#txtUsuarios_CrearUsuario_Perfil").cargarDatosConf('configuracion/cargarCombo.php', function(){}, {Usuario:Usuario.id});
 
 }

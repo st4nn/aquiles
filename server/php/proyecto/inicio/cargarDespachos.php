@@ -1,5 +1,5 @@
 <?php
-  include("../../conectar.php"); 
+  include("conectar.php"); 
   include("../datosUsuario.php"); 
    $link = Conectar();
 

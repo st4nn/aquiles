@@ -50,7 +50,7 @@
                            '$usuario', 
                            '" . md5(md5(md5($clave))) . "', 
                            'Activo',
-                           '$Perfil');";
+                           '$perfil');";
 
             $link->query(utf8_decode($sql));
                if ( $link->affected_rows > 0)
@@ -73,11 +73,11 @@
                         
 
                         $mensaje = "Buen Día, $nombre
-                        <br>Se ha creado un usuario de acceso para el sistema de Agromil,
+                        <br>Se ha creado un usuario de acceso para el sistema Aquiles,
                         <br><br>
                         Los datos de autenticación son:
                         <br><br>
-                        <br>Url de Acceso: http://app.silicioagromil.com
+                        <br>Url de Acceso: http://aquiles.wspcolombia.com
                         <br>Usuario: $usuario
                         <br>Clave: $pClave";
 

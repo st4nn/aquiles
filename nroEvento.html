@@ -66,12 +66,13 @@
                                                     <div class="select">
                                                         <select class="form-control guardar" id="txtNroEvento_Parametro" placeholder="Parametro" required>
                                                             <option value="circuito">Circuito</option>
+                                                            <option value="fechaCargue">Fecha de Cargue</option>
                                                             <option value="trafo">Trafo</option>
                                                             <option value="nodo">Nodo</option>
                                                             <option value="fases">Fases</option>
                                                             <option value="kva">KVA</option>
                                                             <option value="bla">BLA</option>
-                                                            <option value="programacion">Programación</option>
+                                                            <option value="programacion">Fecha de Programación</option>
                                                             <option value="apertura">Apertura</option>
                                                             <option value="cierre">Cierre</option>
                                                             <option value="direccion">Dirección</option>
@@ -129,33 +130,38 @@
                             <h2>Programación<small></small></h2>
                         </div>
                         <div class="card-body card-padding form-horizontal">
-                            <div class="table-responsive">
-                                <table id="tblNroEvento_Resultado" class="table table-condensed table-hover table-striped">
-                                    <thead>                                    
-                                        <tr>
-                                            <th></th>
-                                            <th>Circuito</th>
-                                            <th>Número de Evento</th>
-                                            <th>Trafo</th>
-                                            <th>Nodo</th>
-                                            <th>Fases</th>
-                                            <th>KVA</th>
-                                            <th>BLA</th>
-                                            <th>Programación</th>
-                                            <th>Apertura</th>
-                                            <th>Cierre</th>
-                                            <th>Dirección</th>
-                                            <th>Barrio</th>
-                                            <th>Encargado</th>
-                                            <th>Teléfono</th>
-                                            <th>Observaciones</th>
-                                            <th>Cuadrilla</th>
-                                            <th>Municipio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                            <div id="cntNroEvento_BotonesCircuito" class="row col-sm-12 p-5">
+                                <div class="alert alert-info" role="alert"><h1 id="lblNroEvento_CircuitosIdentificados" class="c-white"></h1> Circuitos identificados</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 table-responsive">
+                                    <table id="tblNroEvento_Resultado" class="table table-condensed table-hover table-striped">
+                                        <thead>                                    
+                                            <tr>
+                                                <th></th>
+                                                <th>Circuito</th>
+                                                <th>Número de Evento</th>
+                                                <th>Trafo</th>
+                                                <th>Nodo</th>
+                                                <th>Fases</th>
+                                                <th>KVA</th>
+                                                <th>BLA</th>
+                                                <th>Programación</th>
+                                                <th>Apertura</th>
+                                                <th>Cierre</th>
+                                                <th>Dirección</th>
+                                                <th>Barrio</th>
+                                                <th>Encargado</th>
+                                                <th>Teléfono</th>
+                                                <th>Observaciones</th>
+                                                <th>Cuadrilla</th>
+                                                <th>Municipio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

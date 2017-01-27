@@ -11,7 +11,7 @@
     $idArchivo = addslashes($_POST['idArchivo']);
     $Usuario = addslashes($_POST['Usuario']);
 
-    //$archivo = "archivo.xls";
+    $archivo = '../../Archivos/' . $archivo;
 
     /********************************************************/
 
@@ -27,7 +27,7 @@ foreach($data->sheets as $numeroHoja => $hoja)
 {
     if ($hoja['numCols'] < 16 AND $hoja['numRows'] < 2)
     {
-        echo "El archivo no tiene la estructura correcta";
+//        echo "El archivo no tiene la estructura correcta";
     } else
     {
         for ($idy=1; $idy <= $hoja['numCols']; $idy++) 

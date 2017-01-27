@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Maniobras | Aquiles</title>
+
+        
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="vendors/bower_components/select2/select2.css">
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        
+    </head>
+    <body data-ma-header="teal">
+        <header id="header" class="media">
+
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <ul class="main-menu">
+                	<br>
+                    <li><a href="nroEvento.html"><i class="zmdi zmdi-collection-item-8"></i> Ingresar Nro de Evento</a></li>
+                </ul>
+            </aside>
+
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="card">
+                                <div class="card-header ch-dark palette-Cyan bg">
+                                    <h4 class="card-title c-white">Registro de Operaciones</h4>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <form id="frmManiobras_Registro">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="txtManiobras_Fecha" class="col-sm-4 control-label">Fecha</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control datepicker guardar" id="txtManiobras_Fecha" placeholder="Fecha" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                             <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="txtDespacho_Hora" class="col-sm-4 control-label">Hora</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control time-picker guardar" id="txtManiobras_Hora" placeholder="Hora" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="txtManiobras_Evento" class="col-sm-4 control-label">No de Nodo</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control guardar" id="txtManiobras_Evento" placeholder="Nodo" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                             <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="txtManiobras_Trafo" class="col-sm-4 control-label">No de Trafo</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control guardar" id="txtManiobras_Trafo" placeholder="Trafo">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="txtManiobras_Reporto" class="col-sm-2 control-label">Reportó</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control guardar" id="txtManiobras_Reporto" placeholder="Reportó" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="txtManiobras_Observaciones" class="col-sm-2 control-label">Observaciones</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control guardar" id="txtManiobras_Observaciones" placeholder="Observaciones">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row text-right">
+                                            <button type="submit" class="btn btn-success btn-lg m-r-20"> Ingresar</button>
+                                            <button type="button" id="btnManiobras_AgregarNovedad" class="btn btn-warning btn-lg"> Agregar Novedad</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header ch-dark palette-Cyan bg">
+                                    <h2 class="card-title c-white">Últimos <small>Registros</small></h2>
+                                    <div class="actions a-alt">
+                                        <form class="p-relative">
+                                            <input type="text" id="txtManiobras_UltimosRegistros_Filtrar" class="hs-input" placeholder="Filtrar">
+                                            <i class="zmdi zmdi-search hs-reset" data-ma-action="search-clear"></i>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <div id="cntManiobras_UltimosRegistros" style="max-height: 500px; overflow-y: scroll;">
+
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <div id="cntImportar_Archivos"></div>
+                                <input type="text" class="form-control guardar hide" id="txtImportar_Proceso" placeholder="Proceso" value="Programacion_Maniobras" required>                                                    
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Registros<br>Identificados</h4>
+                                            </div>
+                                            <div class="card-body card-padding form-horizontal">
+                                                <h1 style="font-size: 4em;" class="text-center text palette-Red-900" id="lblImportar_Detectados">-</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Registros<br>Ingresados</h4>
+                                            </div>
+                                            <div class="card-body card-padding form-horizontal">
+                                                <h1 style="font-size: 4em;" class="text-center text palette-Red-900" id="lblImportar_Ingresados">-</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header ch-dark palette-Amber bg">
+                                    <h2 class="card-title c-white">Maniobras 
+                                            <div class="actions a-alt">
+                                                <form class="p-relative">
+                                                    <input type="text" id="txtManiobras_SinCerrar_Filtrar" class="hs-input" placeholder="Filtrar">
+                                                    <i class="zmdi zmdi-search hs-reset" data-ma-action="search-clear"></i>
+                                                </form>
+                                            </div>
+                                            <small>sin Cerrar</small>
+                                    </h2>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <div id="cntManiobras_SinCerrar" class="list-group lg-alt" style="max-height: 500px; overflow-y: scroll;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title c-white">En Proceso de Cierre EPM</h4>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/logo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Modals -->
+        
+        <!-- End Modals -->
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+    
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/moment/min/local.es.js"></script>
+        <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="vendors/bower_components/select2/select2.js"></script>
+        <script src="vendors/bower_components/select2/i18n/es.js"></script>
+        <script src="vendors/input-mask/input-mask.min.js"></script>
+    
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/aquiles.js"></script>
+        <script src="customJS/maniobras.js"></script>
+        
+
+
+    </body>
+  </html>

@@ -23,6 +23,13 @@ $(document).on("ready", function()
             });
     });
 
+jQuery.expr[':'].Contains = function(a, i, m) { 
+    return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; 
+  };
+  jQuery.expr[':'].contains = function(a, i, m) { 
+    return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; 
+  };
+
 
 var aplicacion = function()
 {
@@ -140,7 +147,7 @@ function Mensaje(Titulo, Mensaje, Tipo, vFrom, vAlign)
             from: vFrom,
             align: vAlign
         },
-        delay: 2500,
+        delay: 3500,
         animate: {
                 enter: 'animated fadeInRight',
                 exit: 'animated fadeOutRight'
@@ -430,66 +437,51 @@ function sumarFecha(fecha, days)
     return year + "-" + CompletarConCero(month, 2)  + "-" + CompletarConCero(day, 2);   
 }
 
-/*
-$.fn.iniciarBotonExportarExcel = function(datos, callback)
+$.fn.iniciarFiltroTextoContenedores = function(selector)
 {
-  obj = this;
-  if (datos.Tabla === undefined || datos.Tabla === null)
+  $(this).on("change keyup paste", function()
   {
-    console.error('El objeto ' + $(obj).attr('id') + ' no se puede iniciar en el metodo Iniciar Boton Exportar Excel');
-  } else
-  {
-    if (callback === undefined)
-    {
-      callback = function(){};
-    }  
+    var str = $(this).val();
 
-    $(obj).on("click", function()
+    if (str == "")
     {
-      if ($("#cntModal_DescargarAExcel").length == 0)
-      {
+      $(selector).show();
+    } else
+    {
+      $(selector).hide();
+      $(selector + ":contains('" + str + "')").show();
+    }
+  });
+}
+
+$.fn.cargarModulo = function(vinculo, callback)
+{
+  if (callback === undefined)
+    {callback = function(){};}
+
+
+  $(this).find(".Modulo").hide();
         var tds = "";
+        var nomModulo = "modulo_" + vinculo.replace(/\s/g, "_");
+        nomModulo = nomModulo.replace(/\./g, "_");
+        nomModulo = nomModulo.replace(/\//g, "_");
 
-          tds += '<div class="modal fade" id="cntModal_DescargarAExcel" tabindex="-1" role="dialog" aria-hidden="true">';
-              tds += '<div class="modal-dialog">';
-                  tds += '<div class="modal-content">';
-                      tds += '<form id="frmModal_DescargarAExcel" method="post" target="_blank" action="server/php/proyecto/configuracion/descargarExcel.php" class="form-horizontal" role="form">';
-                          tds += '<input type="hidden" id="txtModal_DescargarAExcel_Datos" name="Datos" class="form-control guardar" placeholder="Nombre" required>';
-                          tds += '<div class="modal-header">';
-                              tds += '<h4 class="modal-title">Descargar a Excel</h4>';
-                          tds += '</div>';
-                          tds += '<div class="modal-body">';
-                              tds += '<div class="form-group">';
-                                tds += '<label for="txtModal_DescargarAExcel_Nombre" class="control-label">Nombre del Archivo</label>'
-                                  tds += '<div class="fg-line">';
-                                      tds += '<input id="txtModal_DescargarAExcel_Nombre" name="Nombre" class="form-control guardar" placeholder="Nombre" required>';
-                                  tds += '</div>';
-                              tds += '</div>';
-                          tds += '</div>';
-                          tds += '<div class="modal-footer">';
-                              tds += '<button type="button" id="btnModal_DescargarAExcel_Cancelar" class="btn btn-link waves-effect">Cancelar</button>';
-                              tds += '<button type="submit" class="btn btn-link waves-effect">Guardar</button>';
-                          tds += '</div>';
-                      tds += '</form>';
-                  tds += '</div>';
-              tds += '</div>';
-          tds += '</div>';
-
-          $("body").append(tds);
-
-        $("#btnModal_DescargarAExcel_Cancelar").on("click", function(evento)
+        if ($('#' + nomModulo).length)
         {
-          evento.preventDefault();
-          $("#cntModal_DescargarAExcel").modal("hide");
-        });
-      }
+          $('#' + nomModulo).show();
 
-      $("#frmModal_DescargarAExcel")[0].reset();
+          callback();
+        } else
+        {
+          tds += '<div id="' + nomModulo + '" class="Modulo"></div>';
 
-      $("#txtModal_DescargarAExcel_Datos").val( $("<div>").append( $(datos.Tabla).eq(0).clone()).html());
-      $("#cntModal_DescargarAExcel").modal("show");
-    });
-
-  }
-
-}*/
+          $(this).append(tds);
+          $.get(vinculo + "?tmpId=" + obtenerPrefijo(), function(data) 
+          {
+            $("#" + nomModulo).html(data);
+            callback();
+          }).fail(function() {
+            Mensaje("Error", "No tiene permisos para acceder a este modulo", "danger");
+          });
+        }
+}

@@ -1,0 +1,203 @@
+<div class="card">
+	<div class="card-header">
+	    <h2 class="card-title">Formato de inspección de transporte, equipo de muestras y residuos
+	            <div class="actions a-alt">
+					<button class="btn btn-info btn-lg btnTrabajoEnCampo_Volver"><i class="zmdi zmdi-arrow-left zmdi-hc-fw"></i>Volver al Panel</button>	
+	            </div>
+	    </h2>
+	</div>
+</div>
+
+<div class="p-fixed" style="right:10px;bottom: 10px; z-index: 1000;">
+	<button class="btn palette-Green bg waves-effect waves-circle waves-float m-l-20" style="font-size:30px;"><i class="zmdi zmdi-floppy"></i></button>
+	<button class="btn palette-Deep-Orange bg waves-effect waves-circle waves-float" style="font-size:30px;"><i class="zmdi zmdi-camera"></i></button>
+	<button class="btn palette-Deep-Orange bg waves-effect waves-circle waves-float" style="font-size:30px;"><i class="zmdi zmdi-videocam"></i></button>
+	<button class="btn palette-Deep-Orange bg waves-effect waves-circle waves-float" style="font-size:30px;"><i class="zmdi zmdi-card-sd"></i></button>
+	<button class="btn palette-Deep-Orange bg waves-effect waves-circle waves-float" style="font-size:30px;"><i class="zmdi zmdi-gesture"></i></button>
+</div>
+<div class="col-sm-12">
+	<div class="card">
+		<div class="card-body card-padding form-horizontal">
+			<div class="row">
+			    <div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-local-store"></i></span>
+			            <div class="fg-line">
+			                <textarea rows="3" class="form-control" placeholder="Encargado de la (s) muestra(s)::"></textarea>
+			            </div>
+			        </div>
+			    </div>
+
+				<div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-globe"></i></span>
+			            <div class="fg-line">
+			                <input type="text" class="form-control" placeholder="Oficial electricista::">
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-car"></i></span>
+			            <div class="fg-line">
+			                <input type="text" class="form-control" placeholder="Conductor:">
+			            </div>
+			        </div>
+			    </div>
+
+				<div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-compass"></i></span>
+			            <div class="fg-line">
+			                <input type="text" class="form-control" placeholder="Lote:">
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+			            <div class="fg-line">
+			                <input type="text" class="form-control" placeholder="Coordinador de muestreo:">
+			            </div>
+			        </div>
+			    </div>
+
+			    <div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+			            <div class="fg-line">
+			                <textarea rows="3" class="form-control" placeholder="Coordinador ambiental:"></textarea>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+			            <div class="fg-line">
+			                <input type="text" class="form-control" placeholder="Código muestreo:">
+			            </div>
+			        </div>
+			    </div>
+
+			    <div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+			            <div class="fg-line">
+			                <textarea type="text" class="form-control" placeholder="Código muestreo:"></textarea>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-"></i></span>
+			            <div class="fg-line">
+			                <textarea rows="3" class="form-control" placeholder="Laboratorio de análisis (PCB totales):"></textarea>
+			            </div>
+			        </div>
+			    </div>
+
+			    <div class="col-sm-6">
+			        <div class="input-group">
+			            <span class="input-group-addon"><i class="zmdi zmdi-"></i></span>
+			            <div class="fg-line">
+			                <textarea rows="3" class="form-control" placeholder="Disposición final de residuos solidos:"></textarea>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="col-sm-12">
+	<div class="card">
+		<div class="card-header">
+		    <h2 class="card-title">
+		    	 <div class="actions a-alt">
+					<button id="btnFormatos_CadenaDeCustodia_AgregarFila" class="btn btn-warning btn-lg"><i class="zmdi zmdi-plus-circle zmdi-hc-fw"></i>Agregar Fila</button>	
+	            </div>
+		    </h2>
+		</div>
+		<div class="card-body card-padding form-horizontal">
+			<div class="table-responsive">
+				<table id="tblProductos_Resultado" class="table table-condensed table-hover table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>No. EVENTO</th>
+							<th>ZONA</th>
+							<th>CONSECUTIVO DE MUESTRA</th>
+							<th>FECHA DE MUESTRA</th>
+							<th>FABRICANTE DEL EQUIPO</th>
+							<th>No. SERIE</th>
+							<th>No. UNIDAD/ EMPRESA</th>
+							<th>AÑO FABRICACIÓN</th>
+							<th>REPARADOR/ AÑO REPARACIÓN</th>
+							<th>POTENCIA</th>
+							<th>kV</th>
+							<th>FASES</th>
+							<th>PESO/ VOLUMEN ACEITE (l, kg, t)</th>
+							<th>PESO TOTAL</th>
+							<th>MARCADO PCB</th>
+							<th>CONCENTRACIÓN (ppm)</th>
+							<th>PESO RESIDUO PELIGROSO (g)</th>
+							<th>PESO CONTRAMUESTRA (g)</th>
+							<th>kVA</th>
+							<th>MVA</th>
+							<th>kg</th>
+							<th>t</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$("#btnFormatos_CadenaDeCustodia_AgregarFila").on("click", function()
+	{
+		var conteo = $("#tblProductos_Resultado tbody tr").length;
+		var tds = "";
+		tds += '<tr>';
+		tds += '	<td>' + conteo + '</td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '	<td><input type="text" class="form-control" placeholder=""></td>';
+		tds += '</tr>';
+		$("#tblProductos_Resultado tbody").append(tds);
+	});
+</script>

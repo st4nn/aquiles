@@ -13,7 +13,8 @@
          FROM 
             programacionManiobras
          WHERE
-            programacionManiobras.$Parametro = '$Filtro';";
+            programacionManiobras.$Parametro LIKE '%$Filtro%'
+         ORDER BY programacionManiobras.circuito, programacionManiobras.id;";
 
    $result = $link->query($sql);
 
@@ -32,10 +33,10 @@
          $idx++;
       }
       mysqli_free_result($result);  
+      echo json_encode($Usuarios);
    } else
    {
       echo 0;
    }
 
-   echo json_encode($Usuarios);
 ?>
