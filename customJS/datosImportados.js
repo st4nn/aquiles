@@ -6,7 +6,7 @@ function iniciarModulo()
     {
         evento.preventDefault();
         $("#cntNroEvento_BotonesCircuito button").remove();
-        $.post('server/php/proyecto/nroEvento/cargarProgramacionManiobras2.php', {Usuario: Usuario.id, Parametro : $("#txtNroEvento_Parametro").val(), Filtro : $("#txtNroEvento_Filtro").val()}, function(data, textStatus, xhr) 
+        $.post('server/php/proyecto/nroEvento/cargarProgramacionManiobras.php', {Usuario: Usuario.id, Parametro : $("#txtNroEvento_Parametro").val(), Filtro : $("#txtNroEvento_Filtro").val()}, function(data, textStatus, xhr) 
         {
             var tds = "";
             var tdsBotonesCircuito = "";
@@ -16,63 +16,36 @@ function iniciarModulo()
                 var tmpCircuito = "";
                 $.each(data, function(index, val) 
                 {
-                    if (tmpCircuito != val.Resultado_Prueba_Cuantitativa)
+                    if (tmpCircuito != val.circuito)
                     {
-                        tdsBotonesCircuito += '<button class="btn btn-default waves-effect m-5 btnNroEvento_BotonCircuito">' + val.Resultado_Prueba_Cuantitativa + '</button>';
-                        tmpCircuito = val.Resultado_Prueba_Cuantitativa;
+                        tdsBotonesCircuito += '<button class="btn btn-default waves-effect m-5 btnNroEvento_BotonCircuito">' + val.circuito + '</button>';
+                        tmpCircuito = val.circuito;
                         idxCircuito++;
                     }
 
                      tds += "<tr>";
                         tds += '<td class="c-white">' + val.id + '</td>';
-                        tds += '<td>' + val.Usuario + '</td>';
-                        tds += '<td>' + val.fechaCargue + '</td>';
-                        tds += '<td>' + val.idArchivo + '</td>';
-                        tds += '<td>' + val.Codigo_Recipiente + '</td>';
-                        tds += '<td>' + val.Tipo_Elemento + '</td>';
-                        tds += '<td>' + val.Numero_de_la_Orden + '</td>';
-                        tds += '<td>' + val.Numero_de_Unidad + '</td>';
-                        tds += '<td>' + val.Laboratorio_que_Realizo_el_Analisis + '</td>';
-                        tds += '<td>' + val.Desc_Laboratorio_que_realizo_analisis + '</td>';
-                        tds += '<td>' + val.ID_Persona_que_Toma_la_Muestra + '</td>';
-                        tds += '<td>' + val.Desc_Persona_que_toma_la_muestra + '</td>';
-                        tds += '<td>' + val.Responsable_de_la_Prueba + '</td>';
-                        tds += '<td>' + val.Desc_Responsable_de_la_prueba + '</td>';
-                        tds += '<td>' + val.Fecha_Analisis + '</td>';
-                        tds += '<td>' + val.Observaciones + '</td>';
-                        tds += '<td>' + val.Tipo_de_Prueba + '</td>';
-                        tds += '<td>' + val.Descripcion_Tipo_de_Prueba + '</td>';
-                        tds += '<td>' + val.Resultado_de_la_Prueba_Cualitativa + '</td>';
-                        tds += '<td>' + val.Desc_Resultado_prueba_cualitativa + '</td>';
-                        tds += '<td>' + val.Incertidumbre_Cualitativa + '</td>';
-                        tds += '<td>' + val.Kit_Clor_N_Oil_50 + '</td>';
-                        tds += '<td>' + val.Numero_de_Lote_del_Kit + '</td>';
-                        tds += '<td>' + val.Fecha_del_vencimiento_de_Kit + '</td>';
-                        tds += '<td>' + val.Pendiente_Pruebas_Cuantitativas + '</td>';
-                        tds += '<td>' + val.Resultado_Prueba_Semicuantitativa + '</td>';
-                        tds += '<td>' + val.Incertidumbre_Semicuantitativa + '</td>';
-                        tds += '<td>' + val.NÃºmero_Analisis_Semicuantitativa + '</td>';
-                        tds += '<td>' + val.Prueba_Aleatoria + '</td>';
-                        tds += '<td>' + val.Resultado_Prueba_Cuantitativa + '</td>';
-                        tds += '<td>' + val.Incertidumbre_Cuantitativa + '</td>';
-                        tds += '<td>' + val.Numero_Analisis_Cuantitativa + '</td>';
-                        tds += '<td>' + val.Peso_del_Equipo + '</td>';
-                        tds += '<td>' + val.Grupo_PCB + '</td>';
-                        tds += '<td>' + val.Prueba_Aleatoria_CNSS + '</td>';
-                        tds += '<td>' + val.Resultado_Prueba_CNSS + '</td>';
-                        tds += '<td>' + val.Incertidumbre_Cuanti_Superf_Solida + '</td>';
-                        tds += '<td>' + val.Numero_Analisis_CNSS + '</td>';
-                        tds += '<td>' + val.Grupo_PCB_CNSS + '</td>';
-                        tds += '<td>' + val.Solicitud + '</td>';
-                        tds += '<td>' + val.ID_Usuario + '</td>';
-                        tds += '<td>' + val.Programa + '</td>';
-                        tds += '<td>' + val.Id_Maquina + '</td>';
-                        tds += '<td>' + val.Fecha_Actualizacion + '</td>';
-                        tds += '<td>' + val.Hora_Actualizacion + '</td>';
-                       
+                        tds += '<td>' + val.circuito + '</td>';
+                        tds += '<td>' + val.nroEvento + '</td>';
+                        tds += '<td>' + val.trafo + '</td>';
+                        tds += '<td>' + val.nodo + '</td>';
+                        tds += '<td>' + val.fases + '</td>';
+                        tds += '<td>' + val.kva + '</td>';
+                        tds += '<td>' + val.bla + '</td>';
+                        tds += '<td>' + val.programacion + '</td>';
+                        tds += '<td>' + val.apertura + '</td>';
+                        tds += '<td>' + val.cierre + '</td>';
+                        tds += '<td>' + val.direccion + '</td>';
+                        tds += '<td>' + val.barrio + '</td>';
+                        tds += '<td>' + val.encargado + '</td>';
+                        tds += '<td>' + val.telefono + '</td>';
+                        tds += '<td>' + val.observaciones + '</td>';
+                        tds += '<td>' + val.cuadrilla + '</td>';
+                        tds += '<td>' + val.municipio + '</td>';
+                        
                      tds += "</tr>";
                 });
-                $("#tblNroEvento_Resultado").crearDataTable2(tds);
+                $("#tblNroEvento_Resultado").crearDataTable(tds);
                 $("#cntNroEvento_BotonesCircuito").append(tdsBotonesCircuito);
                 $("#lblNroEvento_CircuitosIdentificados").text(idxCircuito);
             } else
@@ -88,7 +61,7 @@ function iniciarModulo()
     {
        evento.preventDefault(); 
 
-       $.post('server/php/proyecto/nroEvento/asignarNumero.php', {Usuario: Usuario.id, Parametro : $("#txtNroEvento_Parametro").val(), Filtro : $("#txtNroEvento_Filtro").val(), Numero : $("#txtNroEvento_Numero").val()}, function(data, textStatus, xhr) 
+       $.post('server/php/proyecto/nroEvento/asignarNumero.php', {Usuario: Usuario.id, Parametro : $("#txtNroEvento_Parametro").val(), Filtro : $("#txtNroEvento_Filtro").val(), Circuito : $("#txtNroEvento_Circuito").val(), Numero : $("#txtNroEvento_Numero").val()}, function(data, textStatus, xhr) 
         {
             if (isNaN(data))
             {
@@ -109,6 +82,7 @@ function iniciarModulo()
         $(objFiltro).val($(this).text());
         $(this).addClass('btn-warning');
         $(objFiltro).trigger('keyup');
+        $("#txtNroEvento_Circuito").val($(this).text());
     });
 
     $(document).delegate("#tblNroEvento_Resultado_filter input[type=search]", 'change', function(event) 

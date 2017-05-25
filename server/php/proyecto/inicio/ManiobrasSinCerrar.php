@@ -1,5 +1,5 @@
 <?php
-  include("conectar.php"); 
+  include("../../conectar.php"); 
   include("../datosUsuario.php"); 
    $link = Conectar();
 
@@ -7,20 +7,24 @@
    $Desde = addslashes($_POST['Desde']);
    $Hasta = addslashes($_POST['Hasta']);
 
-   $where = "";
+   $where = "maniobras.fechaCierre < '2017-01-01 00:00:00' AND maniobras.Novedad = 0";
 
    if ($Desde <> "")
    {
-      $where .= " Despachos.Fecha >= '$Desde 00:00:00' ";
+      if ($where <> "")
+      {
+         $where .= " AND ";
+      }
+      $where .= " maniobras.Fecha >= '$Desde 00:00:00' ";
    }
 
    if ($Hasta <> "")
    {
-      if ($Desde <> "")
+      if ($where <> "")
       {
          $where .= " AND ";
       }
-      $where .= " Despachos.Fecha <= '$Hasta 23:59:59' ";
+      $where .= " maniobras.Fecha <= '$Hasta 23:59:59' ";
    }
 
    if ($where <> "")
@@ -31,17 +35,13 @@
    $Usuario = datosUsuario($idUsuario);
 
    $sql = "SELECT 
-               CONCAT(Productos.Nombre, ' ', Productos.Presentacion) AS Producto, 
-               Clientes.Nombre AS 'Cliente',
-               Despachos.Cantidad
+               maniobras.Ejecutor AS Producto, 
+               COUNT(maniobras.id) AS Cantidad
          FROM 
-            Despachos  
-            INNER JOIN Productos ON Productos.id = Despachos.idProducto 
-            LEFT JOIN Clientes ON Clientes.id = Despachos.idCliente 
+            maniobras  
          $where
          GROUP BY 
-            Clientes.Nombre, Productos.Nombre, Productos.Presentacion
-         ORDER BY Clientes.Nombre, Productos.Nombre, Productos.Presentacion DESC ;";
+            maniobras.Ejecutor;";
 
    $result = $link->query($sql);
 

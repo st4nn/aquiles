@@ -6,27 +6,37 @@
    $idUsuario = addslashes($_POST['Usuario']);
    $fecha = addslashes($_POST['fecha']);
 
+   $fecha2 = '';
+   if (array_key_exists('fecha2', $_POST))
+   {
+      $fecha2 = "AND maniobras.fechaCargue > '" . addslashes($_POST['fecha2']) . "'";
+   }
+
    $where = "";
 
    $Usuario = datosUsuario($idUsuario);
 
    $sql = "SELECT 
-               id, 
-               Usuario, 
-               Fecha AS 'Desde', 
-               fechaCierre AS 'Hasta', 
-               nroEvento AS 'Evento', 
-               nroTrafo AS 'Trafo',  
-               Reporto, 
-               Observaciones,
-               cierreEPM
+               maniobras.id, 
+               maniobras.Usuario, 
+               maniobras.Fecha AS 'Desde', 
+               maniobras.fechaCierre AS 'Hasta', 
+               maniobras.nroEvento AS 'Evento', 
+               maniobras.nroTrafo AS 'Trafo',  
+               maniobras.Reporto, 
+               maniobras.Observaciones,
+               maniobras.ObservacionesCierre,
+               CONCAT(maniobras_Novedades.Nombre, ', ', maniobras_NovedadesCausa.Nombre) AS Novedad,
+               maniobras.cierreEPM
             FROM 
                maniobras 
+               LEFT JOIN maniobras_NovedadesCausa ON maniobras.Novedad = maniobras_NovedadesCausa.id 
+               LEFT JOIN maniobras_Novedades ON  maniobras_NovedadesCausa.idNovedad = maniobras_Novedades.id
             WHERE 
-               maniobras.fechaCierre <> '0000-00-00 00:00:00'
-               AND Novedad = '0'
+               (maniobras.fechaCierre <> '0000-00-00 00:00:00'
+               OR Novedad > 0)
                AND maniobras.Fecha >= '$fecha 00:00:00'
-               AND maniobras.Fecha <= '$fecha 23:59:59'
+               AND maniobras.Fecha <= '$fecha 23:59:59' $fecha2
          ORDER BY 
             maniobras.fechaCierre ASC;";
 

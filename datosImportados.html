@@ -19,11 +19,7 @@
 
         <link rel='stylesheet' href='vendors/datatables-bootstrap/dataTables.bootstrap.css'>
         <link rel='stylesheet' href='vendors/datatables2/dataTables.css'>
-        <!--
-        <link rel='stylesheet' href='vendors/datatables-fixedheader/dataTables.fixedHeader.css'>
-        <link rel='stylesheet' href='vendors/datatables-responsive/dataTables.responsive.css'>
-        -->
-
+        
         <!-- CSS -->
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
@@ -68,14 +64,16 @@
                                                 <div class="select">
                                                     <select class="form-control guardar" id="txtImportar_Proceso" placeholder="Proceso" required>
                                                         <option value="Programacion_Maniobras">Programación de Maniobras</option>
-                                                        <option value="pr">Inventario de Equipos</option>
+                                                        <!--<option value="pr">Inventario de Equipos</option>
                                                         <option value="pr">Cadenas de Custodia</option>
                                                         <option value="pr">Solicitud de Análisis</option>
                                                         <option value="pr">Reporte de Incidentes Ambientales</option>
                                                         <option value="Resultados_Laboratorio">Resultados de Laboratorio</option>
                                                         <option value="Resultados_Laboratorio">Resultado de Analisis</option>
-                                                        <option value="Resultados_Laboratorio">Incidente Ambiental</option>
+                                                        <option value="Resultados_Laboratorio">Incidente Ambiental</option>-->
+                                                        <option value="Trabajos_Programados">Trabajos Programados</option>
                                                         <option value="Resultados_Laboratorio">Solicitud de Analisis</option>
+                                                        <option value="pr">Cadenas de Custodia</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -93,69 +91,43 @@
                                 </div>
                                 <div class="card-body card-padding form-horizontal">
                                     <form id="frmNroEvento_Busqueda">
-                                        <div class="form-group">
+                                         <div class="form-group">
                                             <label for="txtNroEvento_Parametro" class="col-sm-3 control-label">Filtrar Por</label>
                                             <div class="col-sm-9">
                                                 <div class="fg-line">
                                                     <div class="select">
                                                         <select class="form-control guardar" id="txtNroEvento_Parametro" placeholder="Parametro" required>
-                                                            <option value="id">id</option>
-															<option value="Usuario">Usuario</option>
-															<option value="fechaCargue">fechaCargue</option>
-															<option value="idArchivo">idArchivo</option>
-															<option value="Codigo_Recipiente">Codigo_Recipiente</option>
-															<option value="Tipo_Elemento">Tipo_Elemento</option>
-															<option value="Numero_de_la_Orden">Numero_de_la_Orden</option>
-															<option value="Numero_de_Unidad">Numero_de_Unidad</option>
-															<option value="Laboratorio_que_Realizo_el_Analisis">Laboratorio_que_Realizo_el_Analisis</option>
-															<option value="Desc_Laboratorio_que_realizo_analisis">Desc_Laboratorio_que_realizo_analisis</option>
-															<option value="ID_Persona_que_Toma_la_Muestra">ID_Persona_que_Toma_la_Muestra</option>
-															<option value="Desc_Persona_que_toma_la_muestra">Desc_Persona_que_toma_la_muestra</option>
-															<option value="Responsable_de_la_Prueba">Responsable_de_la_Prueba</option>
-															<option value="Desc_Responsable_de_la_prueba">Desc_Responsable_de_la_prueba</option>
-															<option value="Fecha_Analisis">Fecha_Analisis</option>
-															<option value="Observaciones">Observaciones</option>
-															<option value="Tipo_de_Prueba">Tipo_de_Prueba</option>
-															<option value="Descripcion_Tipo_de_Prueba">Descripcion_Tipo_de_Prueba</option>
-															<option value="Resultado_de_la_Prueba_Cualitativa">Resultado_de_la_Prueba_Cualitativa</option>
-															<option value="Desc_Resultado_prueba_cualitativa">Desc_Resultado_prueba_cualitativa</option>
-															<option value="Incertidumbre_Cualitativa">Incertidumbre_Cualitativa</option>
-															<option value="Kit_Clor_N_Oil_50">Kit_Clor_N_Oil_50</option>
-															<option value="Numero_de_Lote_del_Kit">Numero_de_Lote_del_Kit</option>
-															<option value="Fecha_del_vencimiento_de_Kit">Fecha_del_vencimiento_de_Kit</option>
-															<option value="Pendiente_Pruebas_Cuantitativas">Pendiente_Pruebas_Cuantitativas</option>
-															<option value="Resultado_Prueba_Semicuantitativa">Resultado_Prueba_Semicuantitativa</option>
-															<option value="Incertidumbre_Semicuantitativa">Incertidumbre_Semicuantitativa</option>
-															<option value="NÃºmero_Analisis_Semicuantitativa">NÃºmero_Analisis_Semicuantitativa</option>
-															<option value="Prueba_Aleatoria">Prueba_Aleatoria</option>
-															<option value="Resultado_Prueba_Cuantitativa">Resultado_Prueba_Cuantitativa</option>
-															<option value="Incertidumbre_Cuantitativa">Incertidumbre_Cuantitativa</option>
-															<option value="Numero_Analisis_Cuantitativa">Numero_Analisis_Cuantitativa</option>
-															<option value="Peso_del_Equipo">Peso_del_Equipo</option>
-															<option value="Grupo_PCB">Grupo_PCB</option>
-															<option value="Prueba_Aleatoria_CNSS">Prueba_Aleatoria_CNSS</option>
-															<option value="Resultado_Prueba_CNSS">Resultado_Prueba_CNSS</option>
-															<option value="Incertidumbre_Cuanti_Superf_Solida">Incertidumbre_Cuanti_Superf_Solida</option>
-															<option value="Numero_Analisis_CNSS">Numero_Analisis_CNSS</option>
-															<option value="Grupo_PCB_CNSS">Grupo_PCB_CNSS</option>
-															<option value="Solicitud">Solicitud</option>
-															<option value="ID_Usuario">ID_Usuario</option>
-															<option value="Programa">Programa</option>
-															<option value="Id_Maquina">Id_Maquina</option>
-															<option value="Fecha_Actualizacion">Fecha_Actualizacion</option>
-															<option value="Hora_Actualizacion">Hora_Actualizacion</option>
+                                                            <option value="circuito">Circuito</option>
+                                                            <option value="fechaCargue">Fecha de Cargue</option>
+                                                            <option value="trafo">Trafo</option>
+                                                            <option value="nodo">Nodo</option>
+                                                            <option value="fases">Fases</option>
+                                                            <option value="kva">KVA</option>
+                                                            <option value="bla">BLA</option>
+                                                            <option value="programacion">Fecha de Programación</option>
+                                                            <option value="apertura">Apertura</option>
+                                                            <option value="cierre">Cierre</option>
+                                                            <option value="direccion">Dirección</option>
+                                                            <option value="barrio">Barrio</option>
+                                                            <option value="encargado">Encargado</option>
+                                                            <option value="telefono">Teléfono</option>
+                                                            <option value="observaciones">Observaciones</option>
+                                                            <option value="cuadrilla">Cuadrilla</option>
+                                                            <option value="municipio">Municipio</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div> 
-
+                                        
                                         <div class="form-group">
                                             <label for="txtNroEvento_Filtro" class="col-sm-3 control-label">Filtro</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control guardar" id="txtNroEvento_Filtro" placeholder="Filtro" required>
+                                                <input type="hidden" class="form-control guardar" id="txtNroEvento_Circuito">
                                             </div>
                                         </div> 
+
                                         <div class="text-right">
                                             <button type="submit" class="btn btn-success btn-lg"> Buscar</button>
                                         </div>
@@ -177,51 +149,24 @@
                                     <table id="tblNroEvento_Resultado" class="table table-condensed table-hover table-striped">
                                         <thead>                                    
                                             <tr>
-                                                <th>id</th>
-												<th>Usuario</th>
-												<th>fechaCargue</th>
-												<th>idArchivo</th>
-												<th>Codigo_Recipiente</th>
-												<th>Tipo_Elemento</th>
-												<th>Numero_de_la_Orden</th>
-												<th>Numero_de_Unidad</th>
-												<th>Laboratorio_que_Realizo_el_Analisis</th>
-												<th>Desc_Laboratorio_que_realizo_analisis</th>
-												<th>ID_Persona_que_Toma_la_Muestra</th>
-												<th>Desc_Persona_que_toma_la_muestra</th>
-												<th>Responsable_de_la_Prueba</th>
-												<th>Desc_Responsable_de_la_prueba</th>
-												<th>Fecha_Analisis</th>
-												<th>Observaciones</th>
-												<th>Tipo_de_Prueba</th>
-												<th>Descripcion_Tipo_de_Prueba</th>
-												<th>Resultado_de_la_Prueba_Cualitativa</th>
-												<th>Desc_Resultado_prueba_cualitativa</th>
-												<th>Incertidumbre_Cualitativa</th>
-												<th>Kit_Clor_N_Oil_50</th>
-												<th>Numero_de_Lote_del_Kit</th>
-												<th>Fecha_del_vencimiento_de_Kit</th>
-												<th>Pendiente_Pruebas_Cuantitativas</th>
-												<th>Resultado_Prueba_Semicuantitativa</th>
-												<th>Incertidumbre_Semicuantitativa</th>
-												<th>NÃºmero_Analisis_Semicuantitativa</th>
-												<th>Prueba_Aleatoria</th>
-												<th>Resultado_Prueba_Cuantitativa</th>
-												<th>Incertidumbre_Cuantitativa</th>
-												<th>Numero_Analisis_Cuantitativa</th>
-												<th>Peso_del_Equipo</th>
-												<th>Grupo_PCB</th>
-												<th>Prueba_Aleatoria_CNSS</th>
-												<th>Resultado_Prueba_CNSS</th>
-												<th>Incertidumbre_Cuanti_Superf_Solida</th>
-												<th>Numero_Analisis_CNSS</th>
-												<th>Grupo_PCB_CNSS</th>
-												<th>Solicitud</th>
-												<th>ID_Usuario</th>
-												<th>Programa</th>
-												<th>Id_Maquina</th>
-												<th>Fecha_Actualizacion</th>
-												<th>Hora_Actualizacion</th>
+                                                <th></th>
+                                                <th>Circuito</th>
+                                                <th>Número de Evento</th>
+                                                <th>Trafo</th>
+                                                <th>Nodo</th>
+                                                <th>Fases</th>
+                                                <th>KVA</th>
+                                                <th>BLA</th>
+                                                <th>Programación</th>
+                                                <th>Apertura</th>
+                                                <th>Cierre</th>
+                                                <th>Dirección</th>
+                                                <th>Barrio</th>
+                                                <th>Encargado</th>
+                                                <th>Teléfono</th>
+                                                <th>Observaciones</th>
+                                                <th>Cuadrilla</th>
+                                                <th>Municipio</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -268,14 +213,8 @@
         <script src="vendors/datatables2/dataTables.js"></script>
         <script src="vendors/datatables2/Buttons-1.2.4/js/dataTables.buttons.js"></script>
         <script src="vendors/datatables2/Buttons-1.2.4/js/buttons.bootstrap.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/jszip.min.js"></script>
         
-        
-        <!--
-        <script src="vendors/datatables-bootstrap/dataTables.bootstrap.js"></script>
-        <script src="vendors/datatables-tabletools/dataTables.tableTools.js"></script>
-        <script src="vendors/datatables/dataTables.js"></script>
-        -->
 
         <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         
@@ -287,67 +226,7 @@
         <script src="customJS/aquiles.js"></script>
         <script src="customJS/datosImportados.js"></script>
         <script>
-        	$.fn.crearDataTable2 = function(tds, callback)
-        	{
-			  if (callback === undefined)
-			    {callback = function(){};}
 
-			  var dtSpanish = {
-			    "sProcessing":     "Procesando...",
-			    "sLengthMenu":     "Mostrar _MENU_ registros",
-			    "sZeroRecords":    "No se encontraron resultados",
-			    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-			    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-			    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-			    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-			    "sInfoPostFix":    "",
-			    "sSearch":         "Filtrar:",
-			    "sUrl":            "",
-			    "sInfoThousands":  ",",
-			    "sLoadingRecords": "Cargando...",
-			    "oPaginate": {
-			        "sFirst":    "..",
-			        "sLast":     "..",
-			        "sNext":     ">",
-			        "sPrevious": "<"
-			    },
-			    "oAria": {
-			        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-			        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-			    }
-			  };
-
-			  var options = {
-			        "aoColumnDefs": [{
-			          'bSortable': false,
-			          'aTargets': [-1]
-			        }],
-			        "iDisplayLength": 10,
-			        "aLengthMenu": [
-			          [10, 25, 50, -1],
-			          [10, 25, 50, "Todos"]
-			        ],
-			        "sDom": '<"dt-panelmenu clearfix"lBfr>t<"dt-panelfooter clearfix"ip>',
-buttons: [
-        'copy', 'excelHtml5'    ],			        "language" : dtSpanish
-			      };
-
-			  var idObj = $(this).attr("id");
-			  if ($("#" + idObj + "_wrapper").length == 1)
-			    {
-			        $(this).dataTable().fnDestroy();
-			    } 
-
-			    if (tds != undefined && tds != "")
-			    {
-			      $(this).find("tbody").find("tr").remove();
-			      $("#" + idObj + " tbody").append(tds);
-			    }
-
-			  $(this).DataTable(options);
-			  $(".DTTT_button").addClass('btn btn-outline btn-default m-l-5');
-			  callback();
-			}
         </script>
     </body>
   </html>

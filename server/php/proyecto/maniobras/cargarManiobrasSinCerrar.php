@@ -8,6 +8,12 @@
 
    $where = "";
 
+   $fecha2 = '';
+   if (array_key_exists('fecha2', $_POST))
+   {
+      $fecha2 = "AND maniobras.fechaCargue > '" . addslashes($_POST['fecha2']) . "'";
+   }
+
    $Usuario = datosUsuario($idUsuario);
 
    $sql = "SELECT 
@@ -24,7 +30,7 @@
                maniobras.fechaCierre = '0000-00-00 00:00:00'
                AND Novedad = '0'
                AND maniobras.Fecha >= '$fecha 00:00:00'
-               AND maniobras.Fecha <= '$fecha 23:59:59'
+               AND maniobras.Fecha <= '$fecha 23:59:59' $fecha2
          ORDER BY 
             maniobras.Fecha ASC;";
 

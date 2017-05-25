@@ -1,5 +1,5 @@
 <?php
-  include("conectar.php"); 
+  include("../../conectar.php"); 
   include("../datosUsuario.php"); 
    $link = Conectar();
 
@@ -7,20 +7,24 @@
    $Desde = addslashes($_POST['Desde']);
    $Hasta = addslashes($_POST['Hasta']);
 
-   $where = "";
+   $where = "maniobras.fechaCierre > '2017-01-01 00:00:00' AND maniobras.Novedad = 0";
 
    if ($Desde <> "")
    {
-      $where .= " Produccion.HoraInicio >= '$Desde 00:00:00' ";
+      if ($where <> "")
+      {
+         $where .= " AND ";
+      }
+      $where .= " maniobras.Fecha >= '$Desde 00:00:00' ";
    }
 
    if ($Hasta <> "")
    {
-      if ($Desde <> "")
+      if ($where <> "")
       {
          $where .= " AND ";
       }
-      $where .= " Produccion.HoraFin <= '$Hasta 23:59:59' ";
+      $where .= " maniobras.Fecha <= '$Hasta 23:59:59' ";
    }
 
    if ($where <> "")
@@ -31,20 +35,18 @@
    $Usuario = datosUsuario($idUsuario);
 
    $sql = "SELECT 
-               (CASE WHEN Productos.Nombre IS NULL THEN Produccion.NombreReferencia ELSE CONCAT(Productos.Nombre, ' ', Productos.Presentacion) END) AS NombreReferencia,
-               SUM(Produccion.Total) AS Peso,
-               SUM(Produccion.Sacos) AS Sacos
+               maniobras.Ejecutor AS Producto, 
+               COUNT(maniobras.id) AS Cantidad
          FROM 
-            Produccion
-            LEFT JOIN productosTarjeta ON productosTarjeta.codigoReferencia = Produccion.CodigoReferencia AND productosTarjeta.Nombre = Produccion.NombreReferencia
-            LEFT JOIN Productos ON productosTarjeta.id = Productos.idTarjeta
+            maniobras  
          $where
          GROUP BY 
-            Produccion.CodigoReferencia, Produccion.NombreReferencia;";
+            maniobras.Ejecutor;";
 
    $result = $link->query($sql);
 
    $idx = 0;
+   $Cantidad = 0;
    if ( $result->num_rows > 0)
    {
       $Resultado = array();
@@ -55,9 +57,13 @@
          {
             $Resultado[$idx][$key] = utf8_encode($value);
          }
+         $Cantidad += $row['Cantidad'];
+
          $idx++;
       }
-         mysqli_free_result($result);  
+      $Resultado[($idx - 1)]['Total'] = $Cantidad;
+
+         mysqli_free_result($result);
          echo json_encode($Resultado);
    } else
    {

@@ -18,15 +18,14 @@
         <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
         <link rel='stylesheet' href='vendors/datatables-bootstrap/dataTables.bootstrap.css'>
-        <link rel='stylesheet' href='vendors/datatables-fixedheader/dataTables.fixedHeader.css'>
-        <link rel='stylesheet' href='vendors/datatables-responsive/dataTables.responsive.css'>
+        <link rel='stylesheet' href='vendors/datatables2/dataTables.css'>
 
         <!-- CSS -->
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
         
     </head>
-    <body data-ma-header="teal">
+    <body data-ma-header="wsp">
         <header id="header" class="media">
             
         </header>
@@ -67,20 +66,19 @@
                                                         <select class="form-control guardar" id="txtNroEvento_Parametro" placeholder="Parametro" required>
                                                             <option value="circuito">Circuito</option>
                                                             <option value="fechaCargue">Fecha de Cargue</option>
-                                                            <option value="trafo">Trafo</option>
-                                                            <option value="nodo">Nodo</option>
+                                                            <option value="numero_de_trafo">Trafo</option>
+                                                            <option value="numero_de_nodo">Nodo</option>
                                                             <option value="fases">Fases</option>
                                                             <option value="kva">KVA</option>
                                                             <option value="bla">BLA</option>
-                                                            <option value="programacion">Fecha de Programación</option>
-                                                            <option value="apertura">Apertura</option>
-                                                            <option value="cierre">Cierre</option>
+                                                            <option value="fecha_programacion">Fecha de Programación</option>
+                                                            <option value="hora_de_apertura">Apertura</option>
+                                                            <option value="hora_de_cierre">Cierre</option>
                                                             <option value="direccion">Dirección</option>
                                                             <option value="barrio">Barrio</option>
-                                                            <option value="encargado">Encargado</option>
-                                                            <option value="telefono">Teléfono</option>
+                                                            <option value="encargado_con_no_de_divisa_en_campo">Encargado</option>
+                                                            <option value="no_telefono_encargado">Teléfono</option>
                                                             <option value="observaciones">Observaciones</option>
-                                                            <option value="cuadrilla">Cuadrilla</option>
                                                             <option value="municipio">Municipio</option>
                                                         </select>
                                                     </div>
@@ -92,6 +90,7 @@
                                             <label for="txtNroEvento_Filtro" class="col-sm-3 control-label">Filtro</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control guardar" id="txtNroEvento_Filtro" placeholder="Filtro" required>
+                                                <input type="hidden" class="form-control guardar" id="txtNroEvento_Circuito">
                                             </div>
                                         </div> 
                                         <div class="text-right">
@@ -135,6 +134,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 table-responsive">
+                                    <input type="hidden" id="txtNroEvento_Resultado">
                                     <table id="tblNroEvento_Resultado" class="table table-condensed table-hover table-striped">
                                         <thead>                                    
                                             <tr>
@@ -154,7 +154,6 @@
                                                 <th>Encargado</th>
                                                 <th>Teléfono</th>
                                                 <th>Observaciones</th>
-                                                <th>Cuadrilla</th>
                                                 <th>Municipio</th>
                                             </tr>
                                         </thead>
@@ -198,10 +197,10 @@
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
 
-        <script src="vendors/datatables/jquery.dataTables.js"></script>
-        <script src="vendors/datatables-bootstrap/dataTables.bootstrap.js"></script>
-        <script src="vendors/datatables-tabletools/dataTables.tableTools.js"></script>
-        <script src="vendors/datatables/dataTables.js"></script>
+        <script src="vendors/datatables2/dataTables.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/dataTables.buttons.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/buttons.bootstrap.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/jszip.min.js"></script>
 
         <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         

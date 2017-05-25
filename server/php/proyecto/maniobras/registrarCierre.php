@@ -7,16 +7,25 @@
    $idUsuario = addslashes($_POST['Usuario']);
    $idManiobra = addslashes($_POST['idManiobra']);
 
+   $Fecha = addslashes($_POST['Fecha']);
+   $Hora = addslashes($_POST['Hora']);
+
+   $Observaciones = addslashes($_POST['Observaciones']);
+
     date_default_timezone_set('America/Bogota');
    $fechaCierre = date('Y-m-d H:i:s');
 
-   $sql = "INSERT INTO maniobras(id, Usuario, fechaCierre) VALUES (
+   $sql = "INSERT INTO maniobras(id, Usuario, fechaCierre, ObservacionesCierre) VALUES (
             " . $idManiobra . ",
             '" . $idUsuario . "',
-            '" . $fechaCierre  . "')
+            '" . $Fecha . " " . $Hora . "',
+            '" . $Observaciones  . "')
          ON DUPLICATE KEY UPDATE
             Usuario = VALUES(Usuario),
-            fechaCierre = VALUES(fechaCierre);";
+            fechaCierre = VALUES(fechaCierre),
+            ObservacionesCierre = VALUES(ObservacionesCierre);";
+
+            
 
    $link->query(utf8_decode($sql));
    
@@ -34,15 +43,5 @@
   } else
   {
       echo $nuevoId;
-
-      /*$sql = "INSERT INTO stock(idMateriaPrima, Cantidad, valorPromedio) VALUES (
-         '" . $datos->idMateriaPrima . "',
-         '" . $datos->Cantidad . "',
-         '" . $datos->Valor . "'
-      ) ON DUPLICATE KEY UPDATE
-      Cantidad = Cantidad + VALUES(Cantidad),
-      valorPromedio = ((valorPromedio + VALUES(valorPromedio))/2);";
-
-      $link->query(utf8_decode($sql));*/
   }
 ?>

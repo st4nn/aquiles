@@ -21,21 +21,33 @@
       }
    } 
 
-   $sql = "INSERT INTO maniobras(id, Usuario, Fecha, nroEvento, nroTrafo, Reporto, Observaciones) VALUES (
+   $fechaCierre = 0;
+
+   if ($datos->Novedad <> 0 AND $datos->Novedad <> "")
+   {
+      $fechaCierre = $datos->Fecha . ' ' . $datos->Hora;
+   }
+
+   $sql = "INSERT INTO maniobras(id, Usuario, Ejecutor, Fecha, fechaCierre, nroEvento, nroTrafo, Reporto, Observaciones, Novedad) VALUES (
             " . $id . ",
             '" . $idUsuario . "',
+            '" . $datos->Ejecutor . "',
             '" . $datos->Fecha . ' ' . $datos->Hora . "',
+            '" . $fechaCierre . "',
             '" . $datos->Evento . "',
             '" . $datos->Trafo . "',
             '" . $datos->Reporto . "',
-            '" . $datos->Observaciones . "')
+            '" . $datos->Observaciones . "',
+            '" . $datos->Novedad . "')
          ON DUPLICATE KEY UPDATE
             Usuario = VALUES(Usuario),
             Fecha = VALUES(Fecha),
+            fechaCierre = VALUES(fechaCierre),
             nroEvento = VALUES(nroEvento),
             nroTrafo = VALUES(nroTrafo),
             Reporto = VALUES(Reporto),
-            Observaciones = VALUES(Observaciones);";
+            Observaciones = VALUES(Observaciones),
+            Novedad = VALUES(Novedad);";
 
    $link->query(utf8_decode($sql));
    

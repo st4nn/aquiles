@@ -26,21 +26,20 @@ function iniciarModulo()
                      tds += "<tr>";
                         tds += '<td class="c-white">' + val.id + '</td>';
                         tds += '<td>' + val.circuito + '</td>';
-                        tds += '<td>' + val.nroEvento + '</td>';
-                        tds += '<td>' + val.trafo + '</td>';
-                        tds += '<td>' + val.nodo + '</td>';
+                        tds += '<td>' + val.numero_de_evento + '</td>';
+                        tds += '<td>' + val.numero_de_trafo + '</td>';
+                        tds += '<td>' + val.numero_de_nodo + '</td>';
                         tds += '<td>' + val.fases + '</td>';
                         tds += '<td>' + val.kva + '</td>';
                         tds += '<td>' + val.bla + '</td>';
-                        tds += '<td>' + val.programacion + '</td>';
-                        tds += '<td>' + val.apertura + '</td>';
-                        tds += '<td>' + val.cierre + '</td>';
+                        tds += '<td>' + val.fecha_programacion + '</td>';
+                        tds += '<td>' + val.hora_de_apertura + '</td>';
+                        tds += '<td>' + val.hora_de_cierre + '</td>';
                         tds += '<td>' + val.direccion + '</td>';
                         tds += '<td>' + val.barrio + '</td>';
-                        tds += '<td>' + val.encargado + '</td>';
-                        tds += '<td>' + val.telefono + '</td>';
+                        tds += '<td>' + val.encargado_con_no_de_divisa_en_campo + '</td>';
+                        tds += '<td>' + val.no_telefono_encargado + '</td>';
                         tds += '<td>' + val.observaciones + '</td>';
-                        tds += '<td>' + val.cuadrilla + '</td>';
                         tds += '<td>' + val.municipio + '</td>';
                         
                      tds += "</tr>";
@@ -48,6 +47,12 @@ function iniciarModulo()
                 $("#tblNroEvento_Resultado").crearDataTable(tds);
                 $("#cntNroEvento_BotonesCircuito").append(tdsBotonesCircuito);
                 $("#lblNroEvento_CircuitosIdentificados").text(idxCircuito);
+
+                if ($("#txtNroEvento_Circuito").val() != '')
+                {
+                    $(".btnNroEvento_BotonCircuito:contains('" + $("#txtNroEvento_Circuito").val() + "')").trigger('click');
+                    $("#txtNroEvento_Circuito").val('');
+                }
             } else
             {
                 $("#tblNroEvento_Resultado").crearDataTable();
@@ -61,7 +66,7 @@ function iniciarModulo()
     {
        evento.preventDefault(); 
 
-       $.post('server/php/proyecto/nroEvento/asignarNumero.php', {Usuario: Usuario.id, Parametro : $("#txtNroEvento_Parametro").val(), Filtro : $("#txtNroEvento_Filtro").val(), Numero : $("#txtNroEvento_Numero").val()}, function(data, textStatus, xhr) 
+       $.post('server/php/proyecto/nroEvento/asignarNumero.php', {Usuario: Usuario.id, Parametro : $("#txtNroEvento_Parametro").val(), Filtro : $("#txtNroEvento_Filtro").val(), Circuito : $("#txtNroEvento_Circuito").val(), Numero : $("#txtNroEvento_Numero").val()}, function(data, textStatus, xhr) 
         {
             if (isNaN(data))
             {
@@ -70,6 +75,9 @@ function iniciarModulo()
             {
                 Mensaje("Hey", "El numero ha sido asignado", "success");
                 $("#txtNroEvento_Numero").val("");
+                $("#frmNroEvento_Busqueda").trigger('submit');
+                $(".btnNroEvento_BotonCircuito:contains('" + $("#txtNroEvento_Circuito").val() + "')").trigger('click');
+                $("#txtNroEvento_Resultado").val($("#txtNroEvento_Circuito").val());
             }
         });
     });
@@ -82,6 +90,7 @@ function iniciarModulo()
         $(objFiltro).val($(this).text());
         $(this).addClass('btn-warning');
         $(objFiltro).trigger('keyup');
+        $("#txtNroEvento_Circuito").val($(this).text());
     });
 
     $(document).delegate("#tblNroEvento_Resultado_filter input[type=search]", 'change', function(event) 

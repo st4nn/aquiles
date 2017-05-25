@@ -201,6 +201,16 @@
   color: #ff9800;
 }
 
+[data-ma-header="wsp"]:before,
+[data-ma-header="wsp"] #header {
+  background-color: #333d47;
+}
+
+[data-ma-header="wsp"] .smm-alerts > li.active,
+[data-ma-header="wsp"] .main-menu li.active > a {
+  color: #ef5350;
+}
+
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {

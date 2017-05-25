@@ -11,10 +11,10 @@
    $sql = "SELECT 
             *
          FROM 
-            programacionManiobras
+            Programacion_Maniobras_Unificado
          WHERE
-            programacionManiobras.$Parametro LIKE '%$Filtro%'
-         ORDER BY programacionManiobras.circuito, programacionManiobras.id;";
+            Programacion_Maniobras_Unificado.$Parametro LIKE '$Filtro'
+         ORDER BY Programacion_Maniobras_Unificado.circuito, Programacion_Maniobras_Unificado.id;";
 
    $result = $link->query($sql);
 
@@ -27,16 +27,16 @@
          $Usuarios[$idx] = array();
          foreach ($row as $key => $value) 
          {
-            $Usuarios[$idx][$key] = utf8_encode($value);
+            $Usuarios[$idx][strtolower($key)] = utf8_encode($value);
          }
 
          $idx++;
       }
       mysqli_free_result($result);  
-      echo json_encode($Usuarios);
    } else
    {
       echo 0;
    }
 
+   echo json_encode($Usuarios);
 ?>

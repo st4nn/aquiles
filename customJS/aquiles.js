@@ -273,6 +273,8 @@ $.fn.iniciarObjImportarArchivos = function(parametros)
 			    data.append("Observaciones", $("#txtImportar_Modal_ArchivoDescripcion").val());
 			    var nomArchivo = files[0].name;
 
+			    $("#imgImportar_Cargando").slideDown();
+
 			    $.ajax({
 				        url: 'server/php/subirArchivos.php',
 				        type: 'POST',
@@ -283,10 +285,37 @@ $.fn.iniciarObjImportarArchivos = function(parametros)
 				        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
 				        success: function(data, textStatus, jqXHR)
 				        {
-
+				        	$("#imgImportar_Cargando").hide();
+				        	$("#elLog").text("");
 				            if( parseInt(data) > 1)
 				            {
-				            	console.log(parametros);
+				            	$("#elLog").html('El archivo ' + nomArchivo + ' será procesado y se enviará el resultado al correo: ' + Usuario.Correo);
+
+				            	var extension = nomArchivo.split('.');
+				            	if (extension.length > 0)
+				            	{
+				            		extension = extension[extension.length - 1];
+				            	} else
+				            	{
+				            		extension = "obj";
+				            	}
+
+				            	var tds = " ";
+				               	tds += '<a href="server/Archivos/' + parametros.Prefijo + '/' + nomArchivo + '" target="_blank" class="list-group-item media">';
+		                            tds += '<div class="pull-left">';
+		                                tds += '<div class="avatar-char ac-check">';
+		                                    tds += '<span class="acc-helper palette-Red bg text-uppercase">' + extension + '</span>';
+		                                tds += '</div>';
+		                            tds += '</div>';
+		                            tds += '<div class="media-body">';
+		                                tds += '<div class="lgi-heading">' + nomArchivo.replace(extension, "") + '</div>';
+		                                tds += '<small class="lgi-text">' + $("#txtImportar_Modal_ArchivoDescripcion").val() + '</small>';
+		                            tds += '</div>';
+		                        tds += '</a>';
+
+		                        $('#cnt' + idObj + '_DivArchivo_Listado').prepend(tds);
+								
+								/*				                        
 		                        $.post('server/php/manejoArchivos/' + parametros.Proceso + '.php', {Usuario : Usuario.id, idArchivo : data, Archivo : parametros.Prefijo + '/' + nomArchivo}, function(data2, textStatus, xhr) 
 		                        {
 		                        	if (typeof(data2) != "object")
@@ -294,8 +323,11 @@ $.fn.iniciarObjImportarArchivos = function(parametros)
 		                        		Mensaje("Error", data2, "danger");
 		                        	} else
 		                        	{
-		                        		$("#lblImportar_Detectados").text(data2.Detectados);
+		                        		/*
+		                        		/$("#lblImportar_Detectados").text(data2.Detectados);
 		                        		$("#lblImportar_Ingresados").text(data2.Ingresados);
+		                        		*//*
+		                        		$("#elLog").html(data2.Log.replace(/\\n/g, '<br>'));
 
 						            	var extension = nomArchivo.split('.');
 						            	if (extension.length > 0)
@@ -320,7 +352,7 @@ $.fn.iniciarObjImportarArchivos = function(parametros)
 
 				                        $('#cnt' + idObj + '_DivArchivo_Listado').prepend(tds);
 		                        	}
-		                        }, 'json');
+		                        }, 'json');*/
 				            }
 				            else
 				            {

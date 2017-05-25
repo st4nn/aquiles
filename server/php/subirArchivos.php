@@ -51,7 +51,7 @@
 	  		echo $nuevoId;
 	  	} else
 	  	{
-	  		echo 0;
+	  		echo 'El Archivo no pudo cargarse';
 	  	}
 	} else
 	{

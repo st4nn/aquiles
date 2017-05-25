@@ -7,9 +7,9 @@
    $Filtro = addslashes($_POST['Filtro']);
    $Parametro = addslashes($_POST['Parametro']);
    $Numero = addslashes($_POST['Numero']);
+   $Circuito = addslashes($_POST['Circuito']);
 
-
-     $sql = "UPDATE programacionManiobras SET nroEvento = '$Numero' WHERE programacionManiobras.$Parametro = '$Filtro';";
+     $sql = "UPDATE Programacion_Maniobras_Unificado SET NUMERO_DE_EVENTO = '$Numero' WHERE Programacion_Maniobras_Unificado.$Parametro LIKE '$Filtro' AND CIRCUITO = '$Circuito';";
 
      $link->query(utf8_decode($sql));
      

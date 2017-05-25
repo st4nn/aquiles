@@ -18,13 +18,17 @@
         <link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
         
         <link rel="stylesheet" href="vendors/bower_components/select2/select2.css">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+
+        <link rel='stylesheet' href='vendors/datatables-bootstrap/dataTables.bootstrap.css'>
+        <link rel='stylesheet' href='vendors/datatables2/dataTables.css'>
 
         <!-- CSS -->
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
         
     </head>
-    <body data-ma-header="teal">
+    <body data-ma-header="wsp">
         <header id="header" class="media">
 
         </header>
@@ -41,20 +45,38 @@
 
                 <ul class="main-menu">
                 	<br>
-                    <li><a href="nroEvento.html"><i class="zmdi zmdi-collection-item-8"></i> Ingresar Nro de Evento</a></li>
+                    <li><a href="nroEvento.html"><i class="zmdi zmdi-collection-item-7"></i> Ingresar Nro de Evento</a></li>
+                    <li><a href="consolidadoDeManiobras.html"><i class="zmdi zmdi-collection-item-8"></i> Consolidado de Eventos</a></li>
                 </ul>
             </aside>
 
             <section id="content">
                 <div class="container">
+                    <input type="hidden" id="txtManiobras_FechaSincronizacion">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-header ch-dark palette-Cyan bg">
                                     <h4 class="card-title c-white">Registro de Operaciones</h4>
                                 </div>
                                 <div class="card-body card-padding form-horizontal">
                                     <form id="frmManiobras_Registro">
+                                        <input type="hidden" id="txtManiobras_Novedad" class="guardar">
+                                        <div class="form-group">
+                                            <label for="txtManiobras_Ejecutor" class="col-sm-3 control-label">Ejecutor</label>
+                                            <div class="col-sm-9">
+                                                <div class="fg-line">
+                                                    <div class="select">
+                                                        <select class="form-control guardar" id="txtManiobras_Ejecutor" placeholder="Ejecutor" required>
+                                                            <option value="">Seleccione una Empresa</option>
+                                                            <option value="Mejía Acevedo">Mejía Acevedo</option>
+                                                            <option value="Ingelectrica">Ingelectrica</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
@@ -136,26 +158,9 @@
                                     </form>
                                 </div>
                             </div>
-
-                            <div class="card">
-                                <div class="card-header ch-dark palette-Cyan bg">
-                                    <h2 class="card-title c-white">Últimos <small>Registros</small></h2>
-                                    <div class="actions a-alt">
-                                        <form class="p-relative">
-                                            <input type="text" id="txtManiobras_UltimosRegistros_Filtrar" class="hs-input" placeholder="Filtrar">
-                                            <i class="zmdi zmdi-search hs-reset" data-ma-action="search-clear"></i>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="card-body card-padding form-horizontal">
-                                    <div id="cntManiobras_UltimosRegistros" style="max-height: 500px; overflow-y: scroll;">
-
-                                    </div>                                    
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div>
+                        <div class="col-sm-7">
+                            <div class="hide">
                                 <div id="cntImportar_Archivos"></div>
                                 <input type="text" class="form-control guardar hide" id="txtImportar_Proceso" placeholder="Proceso" value="Programacion_Maniobras" required>                                                    
 
@@ -196,23 +201,43 @@
                                     </h2>
                                 </div>
                                 <div class="card-body card-padding form-horizontal">
-                                    <div id="cntManiobras_SinCerrar" class="list-group lg-alt" style="max-height: 500px; overflow-y: scroll;">
+                                    <div id="cntManiobras_SinCerrar" class="list-group lg-alt" style="max-height: 900px; overflow-y: scroll;">
 
                                     </div>
                                 </div>
                             </div>
 
+                        </div>
+                        <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title c-white">En Proceso de Cierre EPM</h4>
+                                <div class="card-header ch-dark palette-Cyan bg">
+                                    <h2 class="card-title c-white">Últimos <small>Registros</small></h2>
+                                    <div class="actions a-alt">
+                                        <form class="p-relative">
+                                            <input type="text" id="txtManiobras_UltimosRegistros_Filtrar" class="hs-input" placeholder="Filtrar">
+                                            <i class="zmdi zmdi-search hs-reset" data-ma-action="search-clear"></i>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div class="card-body card-padding form-horizontal">
-                                    
+                                    <table id="cntManiobras_UltimosRegistros" class="table table-condensed table-hover" style="max-height: 500px; overflow-y: scroll;">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Nodo</th>
+                                                <th>Reportó</th>
+                                                <th>Desde</th>
+                                                <th>Hasta</th>
+                                                <th>Tiempo Desenergizado</th>
+                                                <th>Apertura</th>
+                                                <th>Cierre</th>
+                                                <th>Novedad</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>                                    
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            
                         </div>
                     </div>
                 </div>
@@ -229,6 +254,140 @@
         </section>
 
         <!-- Modals -->
+
+        <div class="modal fade" id="cntManiobras_AgregarNovedad" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="frmManiobras_AgregarNovedad" class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Agregar Novedad</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="pmbb-header">
+                                <h3><i class="zmdi zmdi-account-box-mail m-r-5"></i> Datos de la Novedad</h3>
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Novedad_Estado" class="col-sm-4 control-label">Estado</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select class="form-control guardar" id="txtManiobras_Novedad_Estado" placeholder="Estado">
+                                                        <option value="1">No muestreado</option>
+                                                        <option value="2">Muestreado con certificado PCB</option>
+                                                        <option value="3">No muestreado Oxigenodependiente</option>
+                                                        <option value="4">Volvieron a programar el mismo equipo</option>
+                                                        <option value="5">Reprogramado para cambio (TP)</option>
+                                                        <option value="6">Reprogramar por (TP)</option>
+                                                        <option value="7">Rectificación de Anomalía</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Novedad_Observaciones" class="col-sm-4 control-label">Observación General</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select class="form-control guardar" id="txtManiobras_Novedad_Observaciones" placeholder="Observaciones">
+                                                        <option value="1">Falta de tiempo</option>
+                                                        <option value="2">Tiene certificado libre de PCB.</option>
+                                                        <option value="3">No dio permiso</option>
+                                                        <option value="4">No se avisó a tiempo</option>
+                                                        <option value="5">No se toma muestra por lluvia</option>
+                                                        <option value="6">Por riesgo biológico</option>
+                                                        <option value="7">No se encontró transformador en terreno</option>
+                                                        <option value="8">Transformador seco</option>
+                                                        <option value="9">No autorizado para toma de muestra</option>
+                                                        <option value="10">Conector prensado</option>
+                                                        <option value="11">Se encuentra es el trafo XXXX</option>
+                                                        <option value="12">Por condiciones técnicas</option>
+                                                        <option value="13">Comparte con trafo particular</option>
+                                                        <option value="14">Comparte con cliente especial</option>
+                                                        <option value="15">Enfermedad general</option>
+                                                        <option value="16">No coincide número de amarre</option>
+                                                        <option value="17">Poste en mal estado</option>
+                                                        <option value="18">No se puede ingresar al punto</option>
+                                                        <option value="19">Error en la programación</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link">Guardar</button>
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cntManiobras_CerrarManiobra" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <input type="hidden" id="txtManiobras_FechaApertura">
+                    <form id="frmManiobras_CerrarManiobra" class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Cerrar Maniobra</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="pmbb-header">
+                                <h3><i class="zmdi zmdi-account-box-mail m-r-5"></i> Cierre de la Maniobra en el Nodo: <span id="lblManiobras_CerrarManiobra_Nodo"></span></h3>
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_FechaCierre" class="col-sm-4 control-label">Fecha</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control datepicker guardar" id="txtManiobras_FechaCierre" placeholder="Fecha" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_HoraCierre" class="col-sm-4 control-label">Hora</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control time-picker guardar" id="txtManiobras_HoraCierre" placeholder="Hora" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="txtManiobras_ObservacionesCierre" class="col-sm-4 control-label">Observaciones</label>
+                                    <div class="col-sm-8">
+                                        <div class="fg-line">
+                                            <textarea class="form-control guardar" rows="3" id="txtManiobras_ObservacionesCierre" placeholder="Observaciones"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link">Guardar</button>
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
         
         <!-- End Modals -->
 
@@ -259,6 +418,12 @@
         <script src="vendors/input-mask/input-mask.min.js"></script>
     
         <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+        <script src="vendors/datatables2/dataTables.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/dataTables.buttons.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/buttons.bootstrap.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/jszip.min.js"></script>
 
         <script src="js/functions.js"></script>
         <script src="js/actions.js"></script>

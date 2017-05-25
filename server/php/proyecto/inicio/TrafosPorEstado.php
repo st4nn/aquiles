@@ -1,5 +1,5 @@
 <?php
-  include("conectar.php"); 
+  include("../../conectar.php"); 
   include("../datosUsuario.php"); 
    $link = Conectar();
 
@@ -7,20 +7,24 @@
    $Desde = addslashes($_POST['Desde']);
    $Hasta = addslashes($_POST['Hasta']);
 
-   $where = "";
+   $where = "maniobras.Novedad = 0";
 
    if ($Desde <> "")
    {
-      $where .= " Despachos.Fecha >= '$Desde 00:00:00' ";
+      if ($where <> "")
+      {
+         $where .= " AND ";
+      }
+      $where .= " maniobras.Fecha >= '$Desde 00:00:00' ";
    }
 
    if ($Hasta <> "")
    {
-      if ($Desde <> "")
+      if ($where <> "")
       {
          $where .= " AND ";
       }
-      $where .= " Despachos.Fecha <= '$Hasta 23:59:59' ";
+      $where .= " maniobras.Fecha <= '$Hasta 23:59:59' ";
    }
 
    if ($where <> "")
@@ -28,21 +32,18 @@
       $where = " WHERE " . $where;
    }
 
+   $where = "";
+
    $Usuario = datosUsuario($idUsuario);
 
    $sql = "SELECT 
-            materiaPrima.Nombre, 
-            materiaPrima.siglaUnidades AS Unidades, 
-            stock.Cantidad,
-            ((stock.Cantidad/materiaPrima.cantidadMaxima)*100) AS Porcentaje ,
-            materiaPrima.cantidadMinima,
-            materiaPrima.cantidadMaxima
+               consolidadoGralTrafos.Actividad AS Producto, 
+               COUNT(consolidadoGralTrafos.id) AS Cantidad
          FROM 
-            materiaPrima
-            LEFT JOIN stock ON materiaPrima.id = stock.idMateriaPrima 
-         WHERE
-            materiaPrima.Borrado = 0
-            ORDER BY materiaPrima.Nombre;";
+            consolidadoGralTrafos  
+         $where
+         GROUP BY 
+            consolidadoGralTrafos.Actividad;";
 
    $result = $link->query($sql);
 
@@ -58,9 +59,12 @@
          {
             $Resultado[$idx][$key] = utf8_encode($value);
          }
+         $Cantidad += $row['Cantidad'];
 
          $idx++;
       }
+      $Resultado[($idx - 1)]['Total'] = $Cantidad;
+
          mysqli_free_result($result);
          echo json_encode($Resultado);
    } else
