@@ -33,6 +33,53 @@ function iniciarModulo()
 
 	$("#txtManiobras_FechaCierre").val(obtenerFecha().substr(0, 10));
 
+	var reportadores = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+        'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+      ];
+    
+
+
+	var arrReporto = JSON.parse(localStorage.getItem("wsp_aquiles_reportadores"));
+
+	if (arrReporto == null)
+	{	arrReporto = [];	}
+
+	$("#txtManiobras_Reporto").iniciarTypeHead('reportadores', arrReporto);
+
+    $('#txtManiobras_Reporto').bind('typeahead:select', function(ev, suggestion) {
+	  $('#txtManiobras_Reporto').attr("placeholder", suggestion);
+	});
+
+	$('#txtManiobras_Reporto').on('change', function() 
+	{
+	  	var plholder = $(this).attr("placeholder");
+	  	var str = $(this).val();
+
+	  	if (plholder != str)
+	  	{
+	  		var arr = JSON.parse(localStorage.getItem("wsp_aquiles_reportadores"));
+	  		if (arr == null)
+	  		{
+	  			arr = [str];
+	  		} else
+	  		{
+	  			arr.push(str);
+	  		}
+
+	  		localStorage.setItem("wsp_aquiles_reportadores", JSON.stringify(arr));
+
+	  		$("#txtManiobras_Reporto").iniciarTypeHead('reportadores', arr);
+	  	}
+		$('#txtManiobras_Reporto').attr("placeholder", "");
+	});
+
     setInterval(function()
     {
     	$("#txtManiobras_Hora").val(obtenerFecha().substr(11, 8));
@@ -228,33 +275,40 @@ function iniciarModulo()
 	$("#btnManiobras_AgregarNovedad").on("click", function(evento)
 		{
 			evento.preventDefault();
-			if ($("#txtManiobras_Fecha").val() == "")
+			if ($("#txtManiobras_Ejecutor").val() == "")
 			{
-				priAlert("Hey!", "Hay que diligenciar una fecha primero", "error");
-				$("#txtManiobras_Fecha").focus();
+				priAlert("Hey!", "Hay que diligenciar la Empresa primero", "error");
+				$("#txtManiobras_Hora").focus();
 			} else
 			{
-				if ($("#txtManiobras_Hora").val() == "")
+				if ($("#txtManiobras_Fecha").val() == "")
 				{
-					priAlert("Hey!", "Hay que diligenciar una hora primero", "error");
-					$("#txtManiobras_Hora").focus();
+					priAlert("Hey!", "Hay que diligenciar una fecha primero", "error");
+					$("#txtManiobras_Fecha").focus();
 				} else
 				{
-					if ($("#txtManiobras_Trafo").val() == "")
+					if ($("#txtManiobras_Hora").val() == "")
 					{
-						priAlert("Hey!", "Hay que diligenciar un numero de Transformador", "error");
-						$("#txtManiobras_Trafo").focus();
+						priAlert("Hey!", "Hay que diligenciar una hora primero", "error");
+						$("#txtManiobras_Hora").focus();
 					} else
 					{
-						if ($("#txtManiobras_Reporto").val() == "")
+						if ($("#txtManiobras_Trafo").val() == "")
 						{
-							priAlert("Hey!", "Hay que diligenciar quien reportó", "error");
-							$("#txtManiobras_Reporto").focus();
+							priAlert("Hey!", "Hay que diligenciar un numero de Transformador", "error");
+							$("#txtManiobras_Trafo").focus();
 						} else
 						{
-							$("#cntManiobras_AgregarNovedad").modal('show');
-						}
-					}		
+							if ($("#txtManiobras_Reporto").val() == "")
+							{
+								priAlert("Hey!", "Hay que diligenciar quien reportó", "error");
+								$("#txtManiobras_Reporto").focus();
+							} else
+							{
+								$("#cntManiobras_AgregarNovedad").modal('show');
+							}
+						}		
+					}
 				}
 			}
 		});
@@ -527,4 +581,29 @@ function maniobras_ValidarTrafo(Nodo,Tipo)
 					}
 				}
 			}, 'json');
+}
+
+
+$.fn.iniciarTypeHead = function(strName, arr)
+{
+	if (arr == null || arr == undefined)
+	{
+		arr = [];
+	}
+
+	vArr = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: arr
+    });
+
+    $(this).typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+      name: strName,
+      source: vArr
+    });
 }
