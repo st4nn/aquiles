@@ -32,13 +32,13 @@
                 </a>
             </li>
             -->
-            <li>
+            <li id="mnuManiobras">
                 <a href="maniobras.html">
                     <i class="palette-Indigo-400 bg zmdi zmdi-headset-mic"></i>
                     <small>Maniobras</small>
                 </a>
             </li>
-            <li>
+            <li id="mnuTrabajoEnCampo">
                 <a href="trabajoEnCampo.html">
                     <i class="palette-Orange-400 bg zmdi zmdi-nature-people"></i>
                     <small>Trabajo <br>de Campo</small>
@@ -58,25 +58,25 @@
                 </a>
             </li>
             -->
-            <li>
+            <li id="mnuImportar">
                 <a href="importar.html">
                     <i class="palette-Cyan-400 bg zmdi zmdi-cloud-upload"></i>
                     <small>Importar<br>Datos</small>
                 </a>
             </li>
-            <li>
+            <li id="mnuDatosImportados" class="hide">
                 <a href="datosImportados.html">
                     <i class="palette-Purple-A400 bg zmdi zmdi-view-web"></i>
                     <small>Datos<br>Cargados</small>
                 </a>
             </li>
-            <li>
+            <li id="mnuReportes">
                 <a href="reportes.html">
                     <i class="palette-Blue-Grey-400 bg zmdi zmdi-assignment"></i>
                     <small>Reportes<br>_</small>
                 </a>
             </li>
-            <li>
+            <li id="mnuSeleccionOptima">
                 <a href="seleccionOptima.html">
                     <i class="palette-Green-400 bg zmdi zmdi-thumb-up"></i>
                     <small>Selección Óptima<small>
@@ -116,3 +116,22 @@
         </div>
     </div>
 </div>
+
+<script>
+        //$("#mnuManiobras").hide();
+        if (Usuario.Nivel > 8)
+        {
+            $("#mnuDatosImportados").hide();
+            $("#mnuReportes").hide();
+        }
+
+        if (Usuario.Nivel > 9)
+        {
+            $("#mnuTrabajoEnCampo").hide();
+            $("#mnuDatosImportados").hide();
+            $("#mnuReportes").hide();
+            $("#mnuSeleccionOptima").hide();
+        }
+
+        
+</script>

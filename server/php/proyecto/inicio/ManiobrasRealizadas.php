@@ -7,6 +7,8 @@
    $Desde = addslashes($_POST['Desde']);
    $Hasta = addslashes($_POST['Hasta']);
 
+   $Usuario = datosUsuario($idUsuario);
+
    $where = "maniobras.fechaCierre > '2017-01-01 00:00:00' AND maniobras.Novedad = 0";
 
    if ($Desde <> "")
@@ -27,12 +29,20 @@
       $where .= " maniobras.Fecha <= '$Hasta 23:59:59' ";
    }
 
+   if ($Usuario['idPerfil'] == 9)
+   {
+   		if ($where <> "")
+	      {
+	         $where .= " AND ";
+	      }
+	      $where .= " maniobras.Ejecutor LIKE '" . $Usuario['Empresa'] . "' ";
+   }
+
    if ($where <> "")
    {
       $where = " WHERE " . $where;
    }
 
-   $Usuario = datosUsuario($idUsuario);
 
    $sql = "SELECT 
                maniobras.Ejecutor AS Producto, 
@@ -43,7 +53,7 @@
          GROUP BY 
             maniobras.Ejecutor;";
 
-   $result = $link->query($sql);
+   $result = $link->query(utf8_decode($sql));
 
    $idx = 0;
    $Cantidad = 0;

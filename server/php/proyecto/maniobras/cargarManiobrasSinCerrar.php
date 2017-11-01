@@ -16,6 +16,12 @@
 
    $Usuario = datosUsuario($idUsuario);
 
+   $ejecutor = "";
+   if ($Usuario['idPerfil'] == 9)
+   {
+      $ejecutor .= " AND maniobras.Ejecutor LIKE '" . $Usuario['Empresa'] . "' ";
+   }
+
    $sql = "SELECT 
                id, 
                Usuario, 
@@ -30,11 +36,12 @@
                maniobras.fechaCierre = '0000-00-00 00:00:00'
                AND Novedad = '0'
                AND maniobras.Fecha >= '$fecha 00:00:00'
-               AND maniobras.Fecha <= '$fecha 23:59:59' $fecha2
+               AND maniobras.Fecha <= '$fecha 23:59:59' $fecha2 
+               $ejecutor
          ORDER BY 
             maniobras.Fecha ASC;";
 
-   $result = $link->query($sql);
+   $result = $link->query(utf8_decode($sql));
 
    $idx = 0;
    if ( $result->num_rows > 0)

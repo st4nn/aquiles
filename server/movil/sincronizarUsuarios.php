@@ -11,7 +11,8 @@
             'WSP PB' AS 'empresa' 
           FROM login AS Login
             INNER JOIN datosUsuarios ON datosUsuarios.idLogin = Login.idLogin
-          WHERE  Login.Estado = 'Activo';";
+            INNER JOIN Perfiles ON Perfiles.id = Login.idPerfil
+          WHERE  Login.Estado = 'Activo' AND Perfiles.Nivel < 8;";
 
   $result = $link->query($sql);
 

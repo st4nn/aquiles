@@ -589,7 +589,7 @@ $.fn.crearDataTable = function(tds, callback)
           [10, 25, 50, -1],
           [10, 25, 50, "Todos"]
         ],
-        responsive: true,
+        responsive: false,
         "sDom": 'lBfrtip',
         buttons: [
         'copy', 'excel', 'pdf'

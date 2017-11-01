@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Consulta | Aquiles</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <link rel='stylesheet' href='vendors/datatables-bootstrap/dataTables.bootstrap.css'>
+        <link rel='stylesheet' href='vendors/datatables2/dataTables.css'>
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        
+    </head>
+    <body data-ma-header="wsp">
+        <header id="header" class="media">
+            
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <ul class="main-menu">
+                	<br>
+                    <li><a href="maniobras.html"><i class="zmdi zmdi-arrow-left"></i> Volver a Maniobras</a></li>
+                </ul>
+            </aside>
+
+            <input id="txtProductos_id" type="hidden">
+
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <form id="frmGDE_Busqueda">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="txtGDE_Parametro" class="col-sm-6 control-label">Filtrar Por</label>
+                                                    <div class="col-sm-6">
+                                                        <div class="fg-line">
+                                                            <div class="select">
+                                                                <select class="form-control guardar" id="txtGDE_Parametro" placeholder="Parametro" required>
+                                                                    <option data-tipo="numero" value="NROTRA_PK">No de Transformador</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+
+                                                <div class="form-group">
+                                                    <label for="txtGDE_Filtro" class="col-sm-3 control-label">Filtro</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control guardar" id="txtGDE_Filtro" placeholder="Nro de Trafo" required>
+                                                        <input type="hidden" class="form-control guardar" id="txtGDE_Circuito">
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-success btn-lg"> Buscar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Información<small></small></h2>
+                        </div>
+                        <div class="card-body card-padding form-horizontal">
+                            <div id="tblGDE_Resultado" class="row">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/logo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+        <script src="vendors/datatables2/dataTables.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/dataTables.buttons.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/buttons.bootstrap.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/jszip.min.js"></script>
+
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <script src="vendors/input-mask/input-mask.min.js"></script>
+        
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/aquiles.js"></script>
+        <script src="customJS/gde.js"></script>
+    </body>
+  </html>

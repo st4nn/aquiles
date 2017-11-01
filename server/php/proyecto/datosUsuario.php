@@ -13,10 +13,13 @@
                DatosUsuarios.idArea,
                DatosUsuarios.Nombre,
                DatosUsuarios.Cedula,
-               DatosUsuarios.Correo
+               DatosUsuarios.Correo,
+               DatosUsuarios.Empresa,
+               Perfiles.Nivel
             FROM 
                login AS Login
                INNER JOIN datosUsuarios AS DatosUsuarios ON Login.idLogin = DatosUsuarios.idLogin
+               INNER JOIN Perfiles ON Perfiles.id = Login.idPerfil
             WHERE 
                Login.idLogin = $idUsuario
             GROUP BY

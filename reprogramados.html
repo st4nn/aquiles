@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Trabajos Programados | Aquiles</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+        <link rel='stylesheet' href='vendors/datatables-bootstrap/dataTables.bootstrap.css'>
+        <link rel='stylesheet' href='vendors/datatables2/dataTables.css'>
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+
+        <style>
+            .chkGrande
+            {
+              /* Double-sized Checkboxes */
+              -ms-transform: scale(2); /* IE */
+              -moz-transform: scale(2); /* FF */
+              -webkit-transform: scale(2); /* Safari and Chrome */
+              -o-transform: scale(2); /* Opera */
+              padding: 10px;
+            }
+        </style>
+
+        
+    </head>
+    <body data-ma-header="wsp">
+        <header id="header" class="media">
+            
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <ul class="main-menu">
+                	<br>
+                    <li><a href="maniobras.html"><i class="zmdi zmdi-arrow-left"></i> Volver a Maniobras</a></li>
+                </ul>
+            </aside>
+
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <form id="frmTP_Busqueda">
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label for="txtTP_Filtro" class="col-sm-3 control-label">Desde</label>
+                                                <div class="col-sm-9">
+                                                    <input type="date" class="form-control datepicker guardar" id="txtTP_Desde" placeholder="Desde" required>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label for="txtTP_Filtro" class="col-sm-3 control-label">Hasta</label>
+                                                <div class="col-sm-9">
+                                                    <input type="date" class="form-control datepicker guardar" id="txtTP_Hasta" placeholder="Hasta" required>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-success btn-lg"> Buscar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Resultados<small></small></h2>
+                        </div>
+                        <div class="card-body card-padding form-horizontal">
+                            <div id="cntTP_BotonesCircuito" class="row col-sm-12 p-5">
+                                <div class="alert alert-info" role="alert"><h1 id="lblTP_CircuitosIdentificados" class="c-white"></h1> </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 table-responsive">
+                                    <table id="tblTP_Resultado" class="table table-condensed table-hover table-striped">
+                                        <thead>                                    
+                                            <tr>
+                                                <th></th>
+                                                <th><input type="checkbox" id="chkTP_ProgramacionBorrar" class="chkTP_Programacion"></th>
+                                                <th></th>
+                                                <th>Circuito</th>
+                                                <th>Número de Evento o TP</th>
+                                                <th>Trafo</th>
+                                                <th>Nodo</th>
+                                                <th>Fases</th>
+                                                <th>KVA</th>
+                                                <th>BLA</th>
+                                                <th>Programación</th>
+                                                <th>Apertura</th>
+                                                <th>Cierre</th>
+                                                <th>Dirección</th>
+                                                <th>Barrio</th>
+                                                <th>Encargado</th>
+                                                <th>Teléfono</th>
+                                                <th>Observaciones</th>
+                                                <th>Municipio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/logo_gris.png" alt="">
+                </ul>
+            </footer>
+
+            <div class="modal fade" id="cntTP_EditarRegistro" tabindex="-1" role="dialog" aria-hidden="true">
+	            <div class="modal-dialog modal-lg">
+	                <div class="modal-content">
+	                    <form id="frmTP_EditarRegistro" class="form-horizontal" role="form">
+	                        <div class="modal-header">
+	                            <h4 class="modal-title">Editar Registro de Programación</h4>
+	                        </div>
+	                        <div class="modal-body">
+	                            <input type="hidden" class="form-control guardar" idEdit="0" id="txtTP_Editar_id" required>
+	                            <div class="row">
+	                                 <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_CIRCUITO" class="col-sm-4 control-label">CIRCUITO</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="3" id="txtTP_Editar_CIRCUITO" isEdited="false" placeholder="Circuito" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="row">
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_NUMERO_DE_EVENTO" class="col-sm-4 control-label">No de Evento</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="4" id="txtTP_Editar_NUMERO_DE_EVENTO" placeholder="No de Evento" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                 <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_NUMERO_DE_TRAFO" class="col-sm-4 control-label">No de Trafo</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="5" id="txtTP_Editar_NUMERO_DE_TRAFO" isEdited="false" placeholder="Trafo" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="row">
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_NUMERO_DE_NODO" class="col-sm-4 control-label">Nodo</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="6" id="txtTP_Editar_NUMERO_DE_NODO" placeholder="Nodo" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                 <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_FASES" class="col-sm-4 control-label">Fases</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="7" id="txtTP_Editar_FASES" placeholder="Fases" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-6">	                            
+		                                <div class="form-group">
+		                                    <label for="txtTP_Editar_KVA" class="col-sm-4 control-label">KVA</label>
+		                                    <div class="col-sm-8">
+		                                        <div class="fg-line">
+		                                            <input type="text" class="form-control guardar" idEdit="8" id="txtTP_Editar_KVA" placeholder="KVA" required>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+
+		                            <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_BLA" class="col-sm-4 control-label">BLA</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control datepicker guardar" idEdit="9" id="txtTP_Editar_BLA" placeholder="BLA" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_FECHA_PROGRAMACION" class="col-sm-4 control-label">Programación</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control datepicker guardar" idEdit="10" id="txtTP_Editar_FECHA_PROGRAMACION" placeholder="Fecha" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                 <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_HORA_DE_APERTURA" class="col-sm-4 control-label">Hora de Apertura</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control time-picker guardar" idEdit="11" id="txtTP_Editar_HORA_DE_APERTURA" placeholder="Hora" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_HORA_DE_CIERRE" class="col-sm-4 control-label">Hora de Cierre</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control time-picker guardar" idEdit="12" id="txtTP_Editar_HORA_DE_CIERRE" placeholder="Hora" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_DIRECCION" class="col-sm-4 control-label">Dirección</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="13" id="txtTP_Editar_DIRECCION" placeholder="Dirección" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_BARRIO" class="col-sm-4 control-label">Barrio</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="14" id="txtTP_Editar_BARRIO" placeholder="Barrio" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_ENCARGADO_CON_No_DE_DIVISA_EN_CAMPO" class="col-sm-4 control-label">Encargado</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="15" id="txtTP_Editar_ENCARGADO_CON_No_DE_DIVISA_EN_CAMPO" placeholder="Encargado" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_No_TELEFONO_ENCARGADO" class="col-sm-4 control-label">Teléfono</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="16" id="txtTP_Editar_No_TELEFONO_ENCARGADO" placeholder="Teléfono" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-12">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_OBSERVACIONES" class="col-sm-4 control-label">Observaciones</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <textarea type="text" class="form-control guardar" idEdit="17" id="txtTP_Editar_OBSERVACIONES" placeholder="Observaciones" required></textarea>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label for="txtTP_Editar_MUNICIPIO_2" class="col-sm-4 control-label">Municipio</label>
+	                                        <div class="col-sm-8">
+	                                            <div class="fg-line">
+	                                                <input type="text" class="form-control guardar" idEdit="18" id="txtTP_Editar_MUNICIPIO_2" placeholder="Municipio" required>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                            </div>
+	                        </div>
+	                        <div class="modal-footer">
+	                            <button type="submit" class="btn btn-link">Guardar</button>
+	                            <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/moment/min/local.es.js"></script>
+        <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="vendors/bower_components/select2/select2.js"></script>
+        <script src="vendors/bower_components/select2/i18n/es.js"></script>
+        <script src="vendors/input-mask/input-mask.min.js"></script>
+
+        <script src="vendors/datatables2/dataTables.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/dataTables.buttons.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/buttons.bootstrap.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/jszip.min.js"></script>
+
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/aquiles.js"></script>
+        <script>
+            function iniciarModulo()
+            {
+                $("#lblHeader_NomModulo").text("Reprogramar Maniobras");
+
+                var tHoy = obtenerFecha().substring(0, 10);
+                $("#txtTP_Desde").val(tHoy);
+                $("#txtTP_Hasta").val(tHoy);
+
+                $("#frmTP_Busqueda").on("submit", function(evento)
+                {
+                    evento.preventDefault();
+
+                    var parametros = {
+                        Usuario : Usuario.id,
+                        Desde : $("#txtTP_Desde").val(),
+                        Hasta : $("#txtTP_Hasta").val()
+                    };
+
+                    $("#tblTP_Resultado thead tr").remove();
+                    $.post('server/php/proyecto/tp/reprogramados.php', parametros, function(data, textStatus, xhr) 
+                    {
+                        var tds = '';
+                        if (data != 0)
+                        {
+                            tds += '<tr>';
+                            //tds += '<th></th>';
+                            $.each(data[0], function(index, val) 
+                            {
+                                tds += '<th>' + index.replace(/_/gi, ' ') + '</td>';
+                            });
+                            tds += '</tr>';
+
+                            $("#tblTP_Resultado thead").append(tds);
+
+                            tds = '';
+
+                            $.each(data, function(idx, fila) 
+                            {
+                                tds += '<tr>';
+                                //tds += '<td><input type="checkbox" class="chkGrande chkNroEvento_ProgramacionMarcar" idProgramacion="' + fila.id + '"></td>';
+                                $.each(fila, function(index, val) 
+                                {
+                                    tds += '<td>' + val + '</td>';
+                                });
+                                tds += '</tr>';
+                            });
+                        } else
+                        {
+                            Mensaje("Error", "No hay Trabajos programados en ese rango de fechas", "Error");
+                        }
+
+                        $("#tblTP_Resultado").crearDataTable(tds);
+                        
+                    }, 'json');
+                });
+            }
+
+        </script>
+    </body>
+  </html>
+
+

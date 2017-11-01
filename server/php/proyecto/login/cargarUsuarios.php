@@ -41,11 +41,14 @@
             Login.Usuario,
             DatosUsuarios.Nombre,
             Login.idPerfil,
+            Perfiles.Nombre AS 'Perfil',
             DatosUsuarios.Cargo,
             DatosUsuarios.Correo
          FROM 
             login AS Login
-            INNER JOIN datosUsuarios AS DatosUsuarios ON Login.idLogin = DatosUsuarios.idLogin $where;";
+            INNER JOIN datosUsuarios AS DatosUsuarios ON Login.idLogin = DatosUsuarios.idLogin 
+            INNER JOIN Perfiles ON Perfiles.id = Login.idPerfil
+         $where;";
 
    $result = $link->query($sql);
 

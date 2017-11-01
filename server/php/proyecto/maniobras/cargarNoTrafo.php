@@ -51,7 +51,7 @@
                      Programacion_Maniobras_Unificado.NUMERO_DE_$Tipo LIKE '$nodo'
                      AND Programacion_Maniobras_Unificado.fecha_programacion LIKE '$fecha';";
 
-         $result = $link->query($sql);
+         $result = $link->query(utf8_decode($sql));
 
          $idx = 0;
          if ( $result->num_rows > 0)

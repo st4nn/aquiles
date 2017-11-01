@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Aquiles</title>
+
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        
+        <!-- CSS -->
+        <!--
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet"> 
+        -->
+        
+    </head>
+    <body data-ma-header="wsp">
+        <header id="header" class="media">
+
+        </header>
+
+        <section id="main">
+            <section id="content">
+                <div class="container">
+                      <div class="row">
+                          <div id="cntTrafos_Mapa" class="col-xs-6" style="height:80vh; background: red;"></div>
+                      </div>
+
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/logo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/salvattore/dist/salvattore.min.js"></script>	
+
+        <!--
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/home.js"></script>
+        -->
+        
+
+        <script>
+
+    var mapDiligenciamiento = null;
+
+    var mapPoligono = null;
+    var marcardores = [];
+    
+    if (mapDiligenciamiento == null)
+    {
+      window.open("mapapr.html");
+        var mapDiv = document.getElementById("cntTrafos_Mapa");
+    
+        mapDiligenciamiento = plugin.google.maps.Map.getMap(mapDiv, {
+          'backgroundColor': 'white',
+          'controls': {
+            'compass': true,
+            'myLocationButton': true,
+            'mapTypeControl' : true,
+            'indoorPicker': true,
+            'zoom': true
+          },
+          'gestures': {
+            'scroll': true,
+            'tilt': true,
+            'rotate': true,
+            'zoom': true
+          }   });
+
+        mapDiligenciamiento.addEventListener(plugin.google.maps.event.MAP_READY, function() 
+        {
+          $('[data-ma-header="teal"]:before').css("background-color", 'rgba(0,0,0,0)');
+          var objs = $('._gmaps_cdv_');
+          var tmpStyle = '';
+          $.each(objs, function(index, val) 
+          {
+            if ($(val).prop("tagName") != 'BODY')
+            {
+              tmpStyle = $(val).attr("style");
+              $(val).attr('style', tmpStyle.replace('background-color: rgba(0, 0, 0, 0);', ''));
+            }
+          });
+
+          //$('._gmaps_cdv_').removeClass('_gmaps_cdv_');
+
+          var evtName = plugin.google.maps.event.CAMERA_CHANGE;
+            mapDiligenciamiento.on(evtName, function(latLng) {
+              var lat = latLng.target.lat;
+              var lon = latLng.target.lng;
+
+               var x1, y1, x2, y2;
+              
+                x1 = parseFloat(lat) + 0.008;
+                x2 = parseFloat(lat) - 0.008;
+
+                y1 = parseFloat(lon) + 0.008;
+                y2 = parseFloat(lon) - 0.008;
+
+              ejecutarSQL("SELECT * FROM Trafos WHERE LATITUD < ? AND LATITUD > ? AND LONGITUD < ? AND LONGITUD > ?", [x1, x2, y1, y2], function(datos)
+              {
+                if (datos.length > 0)
+                {
+                  var data = [];
+                  var GOOGLE = {};
+                  $.each(datos, function(index, val) 
+                  {
+                    if (marcardores[val.NROTRA_PK] == undefined)
+                    {
+                      marcardores[val.NROTRA_PK] = 1;
+                      GOOGLE = new plugin.google.maps.LatLng(parseFloat(val.LATITUD), parseFloat(val.LONGITUD));
+                      data.push({
+                        'title' : val.NROTRA_PK, 
+                        'position': GOOGLE,
+                        'icon': { 'url': 'www/img/icons/trafo.png' }
+                      });
+                    }
+                  });
+
+                  if (data != [])
+                  {
+                    for (var i = 0; i < data.length; i++) {
+                        mapDiligenciamiento.addMarker(data[i], function(marker) 
+                        {
+                          
+                        });
+                    }
+
+                  }
+                }
+              });
+
+            });
+          
+            textObtenerCoordenadas(function(lat, lon, calidad)
+            {
+              var GOOGLE = new plugin.google.maps.LatLng(lat, lon);
+              mapDiligenciamiento.setCenter(GOOGLE);
+              mapDiligenciamiento.setZoom(16);
+            });
+
+        });
+    }   
+</script>
+
+
+
+
+    </body>
+  </html>
+

@@ -11,10 +11,12 @@
                Login.Usuario AS 'Usuario',
                Login.Estado AS 'Estado',
                Login.idPerfil AS 'idPerfil',
-               Datos.*
+               Datos.*,
+               Perfiles.Nivel
             FROM 
                login AS Login
                INNER JOIN datosUsuarios AS Datos ON Datos.idLogin = Login.idLogin
+               INNER JOIN Perfiles ON Perfiles.id = Login.idPerfil
             WHERE 
                Login.Usuario = '$usuario' 
                AND Login.Clave = '" . $clave . "';";

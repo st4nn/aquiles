@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Validación de Programación | Aquiles</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <link rel='stylesheet' href='vendors/datatables-bootstrap/dataTables.bootstrap.css'>
+        <link rel='stylesheet' href='vendors/datatables2/dataTables.css'>
+        <style>
+            table.dataTable th.focus,table.dataTable td.focus{outline:3px solid #3366FF;outline-offset:-1px}
+        </style>
+
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        
+    </head>
+    <body data-ma-header="wsp">
+        <header id="header" class="media">
+            
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <ul class="main-menu">
+                	<br>
+                    <li><a href="maniobras.html"><i class="zmdi zmdi-arrow-left"></i> Volver a Maniobras</a></li>
+                </ul>
+            </aside>
+
+            <input id="txtProductos_id" type="hidden">
+
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"></h4>
+                                </div>
+                                <div class="card-body card-padding form-horizontal">
+                                    <form id="frmvProgramacion_Busqueda">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row col-sm-12">
+                                                    <label>
+                                                        <i class="input-helper"></i>
+                                                        Fecha de Maniobra
+                                                    </label>
+                                                </div>
+                                                <div class="row col-sm-12">
+                                                    <div class="col-sm-6 m-b-20">
+                                                        <div class="form-group fg-line">
+                                                            <input type="text" id="txtvProgramacion_Desde" class="form-control input-mask" data-mask="0000-00-00" placeholder="eg: 23/05/2014">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="txtvProgramacion_Ejecutor" class="col-sm-3 control-label">Ejecutor</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="fg-line">
+                                                            <div class="select">
+                                                                <select class="form-control guardar" id="txtvProgramacion_Ejecutor" placeholder="Parametro" required>
+                                                                    <option value="Ingelectrica">Ingelectrica</option>
+                                                                    <option value="Mejía Acevedo">Mejía Acevedo</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-success btn-lg"> Buscar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Programación<small></small></h2>
+                        </div>
+                        <div class="card-body card-padding form-horizontal">
+                            <div id="cntvProgramacion_BotonesCircuito" class="row col-sm-12 p-5">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 table-responsive">
+                                    <input type="hidden" id="txtvProgramacion_Resultado">
+                                    <table id="tblvProgramacion_Resultado" class="table table-condensed table-hover table-striped">
+                                        <thead>                                    
+                                            <tr>
+                                                <th></th>
+                                                <th>id</th>
+                                                <th>Ejecutor de Evento</th>
+                                                <th>Municipio</th>
+                                                <th>No de Nodo</th>
+                                                <th>No de Transformador</th>
+                                                <th>No de Evento</th>
+                                                <!--
+                                                <th>Nombre responsable de campo</th>
+                                                <th>BLA</th>
+                                                <th>Fases</th>
+                                                <th>Fecha Desenergizacion</th>
+                                                <th>Fecha Energizacion</th>
+                                                <th>Duración</th>
+                                                <th>Circuito Apertura</th>
+                                                <th>Observaciones</th>
+                                                <th>Estado Cumplido</th>
+                                                <th>Estado Cumplido Observaciones</th>
+                                                <th>Cierre en Epm</th>
+                                                -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/logo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+        
+        <script src="vendors/datatables2/datatables.min.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/dataTables.buttons.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/buttons.bootstrap.js"></script>
+        <script src="vendors/datatables2/Buttons-1.2.4/js/jszip.min.js"></script>
+
+        <script src="vendors/datatables2/Select-1.2.0/js/dataTables.select.min.js"></script>
+
+        <!--
+        <script src="vendors/datatables-excel/dataTables.select.min.js"></script>
+        <script src="vendors/datatables-excel/dataTables.keyTable.min.js"></script>
+        <script src="vendors/datatables-excel/dataTables.editor.min.js"></script>
+        -->
+
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <script src="vendors/input-mask/input-mask.min.js"></script>
+        
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/aquiles.js"></script>
+        <script src="customJS/vProgramacion.js"></script>
+    </body>
+  </html>

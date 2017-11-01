@@ -1,0 +1,8 @@
+SELECT 
+               maniobras.Ejecutor AS Producto, 
+               COUNT(maniobras.id) AS Cantidad
+         FROM 
+            maniobras  
+          WHERE maniobras.fechaCierre > '2017-01-01 00:00:00' AND maniobras.Novedad = 0 AND  maniobras.Fecha >= '2017-08-01 00:00:00'  AND  maniobras.Fecha <= '2017-08-24 23:59:59'  AND  maniobras.Ejecutor LIKE 'Mejía Acevedo' 
+         GROUP BY 
+            maniobras.Ejecutor;

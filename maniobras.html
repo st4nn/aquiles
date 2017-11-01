@@ -47,6 +47,11 @@
                 	<br>
                     <li><a href="nroEvento.html"><i class="zmdi zmdi-collection-item-7"></i> Ingresar Nro de Evento</a></li>
                     <li><a href="consolidadoDeManiobras.html"><i class="zmdi zmdi-collection-item-8"></i> Consolidado de Eventos</a></li>
+                    <li><a href="tp.html"><i class="zmdi zmdi-collection-item-3"></i> Trabajos Programados</a></li>
+                    <li><a href="reprogramados.html"><i class="zmdi zmdi-collection-item-3"></i> Para reprogramar</a></li>
+                    <li id="cntManiobras_EditarEvento"><a href="#" id="lnkManiobras_EditarEvento"><i class="zmdi zmdi-border-color"></i> Editar Maniobra</a></li>
+                    <li><a href="gde.html"><i class="zmdi zmdi-search"></i> Consultar Trafo</a></li>
+                    <li><a href="vProgramacion.html"><i class="zmdi zmdi-assignment-o"></i> Validación de Programación</a></li>
                 </ul>
             </aside>
 
@@ -54,7 +59,7 @@
                 <div class="container">
                     <input type="hidden" id="txtManiobras_FechaSincronizacion">
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div  id="cntManiobras_Registro" class="col-sm-5">
                             <div class="card">
                                 <div class="card-header ch-dark palette-Cyan bg">
                                     <h4 class="card-title c-white">Registro de Operaciones</h4>
@@ -94,7 +99,7 @@
                                                     <label for="txtDespacho_Hora" class="col-sm-4 control-label">Hora</label>
                                                     <div class="col-sm-8">
                                                         <div class="fg-line">
-                                                            <input type="text" class="form-control time-picker guardar" id="txtManiobras_Hora" placeholder="Hora" required>
+                                                            <input type="text" class="form-control time-picker guardar" id="txtManiobras_Hora" placeholder="Hora" isEdited="false" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -153,7 +158,6 @@
 
                                         <div class="row text-right">
                                             <button type="submit" class="btn btn-success btn-lg m-r-20"> Ingresar</button>
-                                            <button type="button" id="btnManiobras_AgregarNovedad" class="btn btn-warning btn-lg"> Agregar Novedad</button>
                                         </div>
                                     </form>
                                 </div>
@@ -259,6 +263,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form id="frmManiobras_AgregarNovedad" class="form-horizontal" role="form">
+                        <input type="hidden" id="txtManiobras_Novedad_Novedad" class="guardar">
                         <div class="modal-header">
                             <h4 class="modal-title">Agregar Novedad</h4>
                         </div>
@@ -266,60 +271,6 @@
                             <div class="pmbb-header">
                                 <h3><i class="zmdi zmdi-account-box-mail m-r-5"></i> Datos de la Novedad</h3>
                                 <br>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="txtManiobras_Novedad_Estado" class="col-sm-4 control-label">Estado</label>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <div class="select">
-                                                    <select class="form-control guardar" id="txtManiobras_Novedad_Estado" placeholder="Estado">
-                                                        <option value="1">No muestreado</option>
-                                                        <option value="2">Muestreado con certificado PCB</option>
-                                                        <option value="3">No muestreado Oxigenodependiente</option>
-                                                        <option value="4">Volvieron a programar el mismo equipo</option>
-                                                        <option value="5">Reprogramado para cambio (TP)</option>
-                                                        <option value="6">Reprogramar por (TP)</option>
-                                                        <option value="7">Rectificación de Anomalía</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="txtManiobras_Novedad_Observaciones" class="col-sm-4 control-label">Observación General</label>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <div class="select">
-                                                    <select class="form-control guardar" id="txtManiobras_Novedad_Observaciones" placeholder="Observaciones">
-                                                        <option value="1">Falta de tiempo</option>
-                                                        <option value="2">Tiene certificado libre de PCB.</option>
-                                                        <option value="3">No dio permiso</option>
-                                                        <option value="4">No se avisó a tiempo</option>
-                                                        <option value="5">No se toma muestra por lluvia</option>
-                                                        <option value="6">Por riesgo biológico</option>
-                                                        <option value="7">No se encontró transformador en terreno</option>
-                                                        <option value="8">Transformador seco</option>
-                                                        <option value="9">No autorizado para toma de muestra</option>
-                                                        <option value="10">Conector prensado</option>
-                                                        <option value="11">Se encuentra es el trafo XXXX</option>
-                                                        <option value="12">Por condiciones técnicas</option>
-                                                        <option value="13">Comparte con trafo particular</option>
-                                                        <option value="14">Comparte con cliente especial</option>
-                                                        <option value="15">Enfermedad general</option>
-                                                        <option value="16">No coincide número de amarre</option>
-                                                        <option value="17">Poste en mal estado</option>
-                                                        <option value="18">No se puede ingresar al punto</option>
-                                                        <option value="19">Error en la programación</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -361,7 +312,7 @@
                                         <label for="txtManiobras_HoraCierre" class="col-sm-4 control-label">Hora</label>
                                         <div class="col-sm-8">
                                             <div class="fg-line">
-                                                <input type="text" class="form-control time-picker guardar" id="txtManiobras_HoraCierre" placeholder="Hora" required>
+                                                <input type="text" class="form-control time-picker guardar" id="txtManiobras_HoraCierre" isEdited="false" placeholder="Hora" required>
                                             </div>
                                         </div>
                                     </div>
@@ -377,10 +328,231 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Novedad_Estado" class="col-sm-4 control-label">Estado</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select class="form-control guardar" id="txtManiobras_Novedad_Estado" placeholder="Estado">
+                                                        <option value="0">Muestrado</option>
+                                                        <option value="1">No muestreado</option>
+                                                        <option value="2">Muestreado con certificado PCB</option>
+                                                        <option value="3">No muestreado Oxigenodependiente</option>
+                                                        <option value="4">Volvieron a programar el mismo equipo</option>
+                                                        <option value="5">Reprogramado para cambio (TP)</option>
+                                                        <option value="6">Reprogramar por (TP)</option>
+                                                        <option value="7">Rectificación de Anomalía</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Novedad_Observaciones" class="col-sm-4 control-label">Observación General</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select class="form-control guardar" id="txtManiobras_Novedad_Observaciones" placeholder="Observaciones">
+                                                        <option value="0">Ninguna</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!--<button type="button" id="btnManiobras_AgregarNovedad" class="btn btn-warning btn-lg"> Agregar Novedad</button>-->
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-link">Guardar</button>
                             <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cntManiobras_EditarManiobra" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="frmManiobras_EditarManiobra" class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Editar Maniobra</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" class="form-control guardar" id="txtManiobras_Editar_id" required>
+                            <!--
+                            <div class="pmbb-header">
+                                <h3><i class="zmdi zmdi-account-box-mail m-r-5"></i> Cierre de la Maniobra en el Nodo: <span id="lblManiobras_EditarManiobra_Nodo"></span></h3>
+                                <br>
+                            </div>
+                            -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_Ejecutor" class="col-sm-3 control-label">Ejecutor</label>
+                                        <div class="col-sm-9">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select class="form-control guardar" id="txtManiobras_Editar_Ejecutor" placeholder="Ejecutor" required>
+                                                        <option value="">Seleccione una Empresa</option>
+                                                        <option value="Mejía Acevedo">Mejía Acevedo</option>
+                                                        <option value="Ingelectrica">Ingelectrica</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_Reporto" class="col-sm-4 control-label">Reportado Por</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control guardar" id="txtManiobras_Editar_Reporto" isEdited="false" placeholder="Reportado Por" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_FechaCierre" class="col-sm-4 control-label">No de Nodo</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control guardar" id="txtManiobras_Editar_Nodo" placeholder="Nodo" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_HoraCierre" class="col-sm-4 control-label">No de Trafo</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control guardar" id="txtManiobras_Editar_Trafo" isEdited="false" placeholder="Trafo" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_FechaCierre" class="col-sm-4 control-label">Fecha de Apertura</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control datepicker guardar" id="txtManiobras_Editar_FechaApertura" placeholder="Fecha" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_HoraCierre" class="col-sm-4 control-label">Hora de Apertura</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control time-picker guardar" id="txtManiobras_Editar_HoraApertura" isEdited="false" placeholder="Hora" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="txtManiobras_Editar_ObservacionesCierre" class="col-sm-4 control-label">Observaciones  de Apertura</label>
+                                    <div class="col-sm-8">
+                                        <div class="fg-line">
+                                            <textarea class="form-control guardar" rows="3" id="txtManiobras_Editar_ObservacionesApertura" placeholder="Observaciones"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_FechaCierre" class="col-sm-4 control-label">Fecha de Cierre</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control datepicker guardar" id="txtManiobras_Editar_FechaCierre" placeholder="Fecha" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_HoraCierre" class="col-sm-4 control-label">Hora de Cierre</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control time-picker guardar" id="txtManiobras_Editar_HoraCierre" isEdited="false" placeholder="Hora" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="txtManiobras_Editar_ObservacionesCierre" class="col-sm-4 control-label">Observaciones  de Cierre</label>
+                                    <div class="col-sm-8">
+                                        <div class="fg-line">
+                                            <textarea class="form-control guardar" rows="3" id="txtManiobras_Editar_ObservacionesCierre" placeholder="Observaciones"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_Estado" class="col-sm-4 control-label">Estado</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select class="form-control guardar" id="txtManiobras_Editar_Estado" placeholder="Estado">
+                                                        <option value="0">Muestrado</option>
+                                                        <option value="1">No muestreado</option>
+                                                        <option value="2">Muestreado con certificado PCB</option>
+                                                        <option value="3">No muestreado Oxigenodependiente</option>
+                                                        <option value="4">Volvieron a programar el mismo equipo</option>
+                                                        <option value="5">Reprogramado para cambio (TP)</option>
+                                                        <option value="6">Reprogramar por (TP)</option>
+                                                        <option value="7">Rectificación de Anomalía</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtManiobras_Editar_Observaciones" class="col-sm-4 control-label">Observación General</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select class="form-control guardar" id="txtManiobras_Editar_Observaciones" placeholder="Observaciones">
+                                                        <option value="0">Ninguna</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link">Guardar</button>
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                            <button id="btnManiobras_Editar_Borrar" type="button" class="btn btn-danger">Borrar ésta Maniobra</button>
                         </div>
                     </form>
                 </div>
@@ -422,6 +594,8 @@
     
         <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/bootbox.min.js"></script>
+        
 
         <script src="vendors/datatables2/dataTables.js"></script>
         <script src="vendors/datatables2/Buttons-1.2.4/js/dataTables.buttons.js"></script>

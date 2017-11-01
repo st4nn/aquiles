@@ -6,7 +6,7 @@
    $ip = getRealIP();
 
    
-   if($ip == "190.216.154.146")
+   if($ip == "190.216.154.146" OR $ip == '190.242.127.34')
    {
       $mensaje = $_POST['mensaje'];
       $correo = $_POST['Destinatario'];

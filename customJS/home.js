@@ -111,6 +111,8 @@ function cargarInicio(Desde, Hasta)
 
 	$("#cntHome_ManiobrasSinCerrar").cargarDatosInicio('ManiobrasSinCerrar', cargarDatosInicio_FuncionBasica, false, Desde, Hasta, "div", 'Maniobras sin Cerrar', function(){}, 'caret-right-circle');
 
+	$("#cntHome_IntervRealizadas").cargarDatosInicio('IntervRealizadas', cargarDatosInicio_FuncionBasica, false, Desde, Hasta, "div", 'Interventorías realizadas', function(){}, 'nature-people');
+
 	/*$("#cntHome_ValorPorGrupoContable").cargarDatosInicio('ValorPorGrupoContable', cargarDatosInicio_FuncionBasica, false, Desde, Hasta, "div", 'Activos', function(){}, 'money');
 
 	$("#cntHome_ValorPorTipoDeInventario").cargarDatosInicio('ValorPorTipoDeInventario', cargarDatosInicio_FuncionBasica, false, Desde, Hasta, "div", 'Activos', function(){}, 'money');

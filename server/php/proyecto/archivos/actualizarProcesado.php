@@ -1,5 +1,6 @@
 <?php
   include("../../conectar.php"); 
+  include("../maniobras/actualizarEjecutor.php"); 
    $link = Conectar();
 
    $idArchivo = addslashes($_POST['idArchivo']);
@@ -9,4 +10,6 @@
 
    $result = $link->query($sql);
 
+
+   actualizarEjecutores();
 ?>

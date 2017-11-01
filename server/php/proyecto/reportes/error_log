@@ -1,0 +1,7 @@
+[23-Aug-2017 15:57:57 UTC] PHP Warning:  mysqli::query(): Empty query in /home/wspcolom/public_html/aquiles/server/php/proyecto/reportes/cargarReporte.php on line 63
+[23-Aug-2017 16:12:30 UTC] PHP Warning:  mysqli::query(): Empty query in /home/wspcolom/public_html/aquiles/server/php/proyecto/reportes/cargarReporte.php on line 63
+[23-Aug-2017 16:13:05 UTC] PHP Warning:  mysqli::query(): Empty query in /home/wspcolom/public_html/aquiles/server/php/proyecto/reportes/cargarReporte.php on line 63
+[23-Aug-2017 16:13:34 UTC] PHP Warning:  mysqli::query(): Empty query in /home/wspcolom/public_html/aquiles/server/php/proyecto/reportes/cargarReporte.php on line 63
+[23-Aug-2017 16:13:53 UTC] PHP Warning:  mysqli::query(): Empty query in /home/wspcolom/public_html/aquiles/server/php/proyecto/reportes/cargarReporte.php on line 65
+[23-Aug-2017 16:14:03 UTC] PHP Warning:  mysqli::query(): Empty query in /home/wspcolom/public_html/aquiles/server/php/proyecto/reportes/cargarReporte.php on line 65
+[08-Sep-2017 17:52:04 UTC] PHP Warning:  mysqli::query(): Empty query in /home/wspcolom/public_html/aquiles/server/php/proyecto/reportes/cargarReporte.php on line 63

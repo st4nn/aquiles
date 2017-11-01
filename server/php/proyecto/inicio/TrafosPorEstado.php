@@ -37,13 +37,13 @@
    $Usuario = datosUsuario($idUsuario);
 
    $sql = "SELECT 
-               consolidadoGralTrafos.Actividad AS Producto, 
-               COUNT(consolidadoGralTrafos.id) AS Cantidad
+               v_ConsolidadoteDeManiobras.Estado_Cumplido AS Producto, 
+               COUNT(v_ConsolidadoteDeManiobras.id) AS Cantidad
          FROM 
-            consolidadoGralTrafos  
+            v_ConsolidadoteDeManiobras  
          $where
          GROUP BY 
-            consolidadoGralTrafos.Actividad;";
+            v_ConsolidadoteDeManiobras.Estado_Cumplido;";
 
    $result = $link->query($sql);
 
